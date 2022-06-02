@@ -5,11 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build:css": "tailwind build ./styles/globals.css -o ./.next/static/css/f562df6760a9ea46.css --watch",
-    "build": "next build build:css",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.6",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0",
