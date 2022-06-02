@@ -54,14 +54,15 @@ const Home: NextPage = () => {
             <ShoppingCartIcon className="h-6 w-6"/>
             <p className='text-xl'>SHOP</p>
           </nav>
-          <header className='w-screen py-4 px-6 my-auto text-left font-bold text-2xl text-white'>
-            <h1 className='mb-4'>3D FURNITURE</h1>
-            <h2>Find your perfect match!</h2>
+          <header className='w-screen py-4 px-6 my-auto text-center text-white'>
+            <h1 className='mb-4 text-4xl font-bold'>3D FURNITURE</h1>
+            <h2 className='italic text-2xl'>Find your perfect match!</h2>
           </header>
         </section>
         <div>
-          <h1 className='text-3xl font-bold underline'>Products:</h1>
+          <h1 className='text-3xl text-center my-8 text-zinc-600'>Products:</h1>
           <ItemCard />
+
         </div>
       </main>
 
