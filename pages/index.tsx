@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useState, useRef } from 'react'
-   // @ts-ignore: Unreachable code error
+//@ts-ignore: Unreachable code error
 import WAVES from "vanta/dist/vanta.waves.min.js";
 import * as THREE from "three";
 import { ItemCard } from '../src/components/ItemCard'

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useFrame } from "react-three-fiber";
+import { useFrame } from '@react-three/fiber';
 import * as THREE from "three";
-import { Html } from "drei";
+import { Html } from '@react-three/drei';
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Object3D } from "three/src/core/Object3D"; //Object3D types
 import { AnimationClip } from "three/src/animation/AnimationClip"; //Animation types
@@ -25,7 +25,7 @@ interface actions {
 
 const Model = () => {
   /* Refs */
-  const group = useRef();
+  const group:group = useRef();
   const actions = useRef();
 
   /* State */
@@ -49,8 +49,8 @@ const Model = () => {
 
   /* Set animation */
   useEffect(() => {
-    if (animation && typeof group.current != "undefined") {
-           {/* @ts-ignore: Unreachable code error */}
+    if (animation && typeof group.current != "undefined" && typeof actions.current != "undefined") {
+       {/* @ts-ignore: Unreachable code error */}
       actions.current = {
         idle: mixer.clipAction(animation[0], group.current as Object3D),
       };
@@ -65,7 +65,6 @@ const Model = () => {
   /* Rotation */
   useFrame(() => {
     if (typeof group.current != "undefined")
-         {/* @ts-ignore: Unreachable code error */}
       return (group.current.rotation.y += 0.01);
   });
 
