@@ -3,8 +3,8 @@ import { useFrame } from '@react-three/fiber';
 import * as THREE from "three";
 import { Html } from '@react-three/drei';
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Object3D } from "three/src/core/Object3D"; //Object3D types
-import { AnimationClip } from "three/src/animation/AnimationClip"; //Animation types
+import { Object3D } from "three/src/core/Object3D";
+import { AnimationClip } from "three/src/animation/AnimationClip";
 
 interface group {
   current: {
@@ -24,19 +24,14 @@ interface actions {
 }
 
 const Model = () => {
-  /* Refs */
   const group:group = useRef();
-  const actions = useRef();
+  const actions:actions = useRef();
 
-  /* State */
   const [model, setModel] = useState<Object3D | null>(null);
   const [animation, setAnimation] = useState<AnimationClip[] | null>(null);
 
-  /* Mixer */
-       {/* @ts-ignore: Unreachable code error */}
   const [mixer] = useState(() => new THREE.AnimationMixer(null));
 
-  /* Load model */
   useEffect(() => {
     const loader = new GLTFLoader();
     loader.load("scene.gltf", async (gltf) => {
@@ -47,22 +42,17 @@ const Model = () => {
     });
   }, []);
 
-  /* Set animation */
   useEffect(() => {
     if (animation && typeof group.current != "undefined" && typeof actions.current != "undefined") {
-       {/* @ts-ignore: Unreachable code error */}
       actions.current = {
         idle: mixer.clipAction(animation[0], group.current as Object3D),
       };
-           {/* @ts-ignore: Unreachable code error */}
       actions.current.idle.play();
       return () => animation.forEach((clip) => mixer.uncacheClip(clip));
     }
   }, [animation]);
 
-  /* Animation update */
   useFrame((_, delta) => mixer.update(delta));
-  /* Rotation */
   useFrame(() => {
     if (typeof group.current != "undefined")
       return (group.current.rotation.y += 0.01);
@@ -72,7 +62,7 @@ const Model = () => {
     <>
       {model ? (
         /* @ts-ignore: Unreachable code error */
-        <group ref={group} position={[0, -150, 0]} dispose={null}>
+        <group ref={group} position={[0, 0, 80]} dispose={null}>
           <primitive ref={group} name="Object_0" object={model} />
         </group>
       ) : (

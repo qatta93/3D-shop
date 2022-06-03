@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useState, useRef } from 'react'
-//@ts-ignore: Unreachable code error
-import WAVES from "vanta/dist/vanta.waves.min.js";
+   // @ts-ignore: Unreachable code error
+import WAVES from "vanta/dist/vanta.waves.min";
 import * as THREE from "three";
 import { ItemCard } from '../src/components/ItemCard'
 import { UserIcon } from '@heroicons/react/solid'
@@ -38,6 +38,28 @@ const Home: NextPage = () => {
     }
   },[vantaEffect])
 
+
+  // add some database 
+  const furniture = [{
+    id: 1,
+    name: "chairs",
+    img: "/images/chairs.jpg",
+    price: "95$",
+  },
+  {
+    id: 2,
+    name: "tables",
+    img: "/images/table.jpg",
+    price: "185$",
+  },
+  {
+    id: 3,
+    name: "lamps",
+    img: "/images/lamp.jpg",
+    price: "65$",
+  },
+]
+
   return (
     <div className='w-screen h-screen'>
       <Head>
@@ -47,7 +69,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className='h-screen relative flex-1'>
-        <section className='w-screen h-4/5 flex flex-column py-12' ref={vantaRef}>
+        <section className='w-screen h-4/5 flex flex-column py-12 bg-slate-500' ref={vantaRef}>
           <nav className='absolute flex flex-row justify-center top-0 right-0 px-6 py-4 text-white'>
             <UserIcon className="h-6 w-6"/>
             <p className='text-xl mr-4'>LOGIN</p>
@@ -61,8 +83,7 @@ const Home: NextPage = () => {
         </section>
         <div>
           <h1 className='text-3xl text-center my-8 text-zinc-600'>Products:</h1>
-          <ItemCard />
-
+          {furniture.map(item => <ItemCard key={item.id} name={item.name} img={item.img} price={item.price}/>)}
         </div>
       </main>
 

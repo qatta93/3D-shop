@@ -8,7 +8,7 @@ const Chairs: NextPage = () => {
   return (
     <>
     <div>Chairs</div>
-    <Canvas camera={{ position: [0, 0, 300]}}> 
+    <Canvas camera={{ position: [0, 0, 300]}} > 
       <Lights />
       <Model />
     </Canvas>
