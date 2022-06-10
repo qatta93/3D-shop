@@ -7,6 +7,8 @@ import * as THREE from "three";
 import { ItemCard } from '../src/components/ItemCard'
 import { UserIcon } from '@heroicons/react/solid'
 import { ShoppingCartIcon } from '@heroicons/react/solid'
+import { FurnitureProps } from '@/components/types';
+
 
 const Home: NextPage = () => {
   const [vantaEffect, setVantaEffect] = useState<any>(0);
@@ -40,10 +42,10 @@ const Home: NextPage = () => {
 
 
   // add some database 
-  const furniture = [{
+  const furniture:FurnitureProps[] = [{
     id: 1,
     name: "chairs",
-    img: "/images/chairs.jpg",
+    img: "/images/chair.jpg",
     price: "95$",
   },
   {
@@ -83,7 +85,7 @@ const Home: NextPage = () => {
         </section>
         <div>
           <h1 className='text-3xl text-center my-8 text-zinc-600'>Products:</h1>
-          {furniture.map(item => <ItemCard key={item.id} name={item.name} img={item.img} price={item.price}/>)}
+          {furniture.map(item => <ItemCard key={item.id} item={item}/>)}
         </div>
       </main>
 
