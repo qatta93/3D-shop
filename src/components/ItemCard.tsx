@@ -10,7 +10,7 @@ export const ItemCard = (item) => {
           </div>
           <div className="mt-4 px-6 py-12 bg-slate-200 flex ">
             <h3 className="text-xl text-gray-700 flex-1">{item.item.name}</h3>
-            <p className="text-xl text-gray-900">{item.item.price}</p>
+            <p className="text-xl text-gray-900">from  {item.item.price}</p>
           </div>
         </a>
       </div>
