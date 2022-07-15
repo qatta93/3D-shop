@@ -41,7 +41,8 @@ const Home: NextPage = () => {
         <main className='h-screen relative flex-1'>
           <section className='w-screen h-4/5 flex flex-column pb-12'>
             <header className='h-auto w-screen text-center text-black relative my-2'>
-              <img src="images/interior2.gif" alt="interior" className='w-screen absolute inset-0 top-2'/>
+              <img src="images/interior2.png" alt="interior" className='w-screen absolute inset-0 top-2'/>
+              <img src="images/bcg_black.png" alt="interior" className='w-screen absolute inset-0 top-2 opacity-50'/>
                {showGif && <img src="images/interior.gif" alt="interior" className='w-screen absolute top-28'/>}   
               <h1 className='mb-4 text-4xl font-bold'>3D FURNITURE</h1>
               <h2 className='italic text-2xl'>Find your perfect match!</h2>
