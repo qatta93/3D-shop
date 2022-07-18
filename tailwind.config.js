@@ -17,7 +17,12 @@ module.exports = {
     "./src/**/*.{html,js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif'],
+         'adelia': ["ADELIA", "cursive"],
+      },
+    },
   },
   plugins: [],
 }

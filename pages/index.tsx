@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
 import { useEffect, useState, useRef } from 'react'
 import { ItemCard } from '../src/components/ItemCard'
 import { FurnitureProps } from '@/components/types';
@@ -72,13 +71,14 @@ const Home: NextPage = () => {
 ]
 
   return (
-      <div className='w-screen h-screen'>
-        <main className='h-screen relative flex-1'>
-          <section className='w-screen h-4/5 flex flex-column pb-12'>
-            <div className="relative w-screen h-42 overflow-hidden text-slate-800 text-center">
+      <div className='w-screen h-full'>
+        <main className='h-full relative flex-1'>
+          <section className='w-screen h-[480px] flex flex-column drop-shadow-lg'>
+            <div className="relative w-screen overflow-hidden text-slate-800 text-center">
               <img src="images/interior_bcg.png" alt="Avatar" className="absolute object-cover w-full h-full opacity-10" />
+              <img src="images/hexagon2.jpg" alt="Avatar" className="absolute object-cover w-full h-full opacity-40" />
               <img src="images/interior_bcg.png" alt="Avatar" className="absolute object-cover w-full h-full z-1" ref={bcgDarkRef}/>
-              {showGif && <img src="images/interior.gif" alt="interior" className='w-screen absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '/>}
+              {showGif && <img src="images/interior.gif" alt="interior" className='w-screen absolute shadow-2xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-80'/>}
               {!showGif && <img src="images/interior_static.png" alt="interior" className='w-screen absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '/>}
               <img src="images/interior_bcg_slide.png" alt="interior" className='w-screen absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2' ref={bcgRef}/>
                 <div className='absolute align-middle w-full inset-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 my-10' ref={textRef}>
@@ -87,8 +87,8 @@ const Home: NextPage = () => {
                 </div>
             </div>
           </section>
-          <div>
-            <h1 className='text-3xl text-center my-4 text-zinc-600'>Products:</h1>
+          <div className='py-12 bg-zinc-50'>
+            <h1 className='text-3xl text-center my-6 text-zinc-600'>Products:</h1>
             {furniture.map(item => <ItemCard key={item.id} item={item}/>)}
           </div>
         </main>
