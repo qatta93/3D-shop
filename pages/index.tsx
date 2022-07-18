@@ -10,6 +10,7 @@ const Home: NextPage = () => {
   const [showGif, setShowGif] = useState<boolean>(true);
 
   const bcgRef = useRef();
+  const bcgDarkRef = useRef();
   const textRef = useRef();
 
 
@@ -30,9 +31,17 @@ const Home: NextPage = () => {
       duration: 1
     });
     gsap.to(bcgRef.current, {
-      opacity: .8, 
+      opacity: .9, 
       x: 0, 
       delay: 6.3,
+    });
+    gsap.from(bcgDarkRef.current, {
+      opacity: 0, 
+      duration: 3
+    });
+    gsap.to(bcgDarkRef.current, {
+      opacity: .3, 
+      delay: 6.2,
     });
     
     setTimeout(function() {
@@ -67,13 +76,14 @@ const Home: NextPage = () => {
         <main className='h-screen relative flex-1'>
           <section className='w-screen h-4/5 flex flex-column pb-12'>
             <div className="relative w-screen h-42 overflow-hidden text-slate-800 text-center">
-              <img src="images/interior_bcg.png" alt="Avatar" className="object-cover w-full h-full opacity-30" />
+              <img src="images/interior_bcg.png" alt="Avatar" className="absolute object-cover w-full h-full opacity-10" />
+              <img src="images/interior_bcg.png" alt="Avatar" className="absolute object-cover w-full h-full z-1" ref={bcgDarkRef}/>
               {showGif && <img src="images/interior.gif" alt="interior" className='w-screen absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '/>}
               {!showGif && <img src="images/interior_static.png" alt="interior" className='w-screen absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '/>}
               <img src="images/interior_bcg_slide.png" alt="interior" className='w-screen absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2' ref={bcgRef}/>
                 <div className='absolute align-middle w-full inset-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 my-10' ref={textRef}>
-                  <h1 className="w-full py-2.5 inset-x-0 text-2xl leading-4 font-extrabold">3D FURNITURE</h1>
-                  <h2 className='w-full pt-3 italic text-2xl font-bold'>Find your perfect match!</h2>
+                  <h1 className="w-full py-2.5 inset-x-0 text-3xl leading-4 font-extrabold">3D FURNITURE</h1>
+                  <h2 className='w-full pt-3 italic text-2xl font-semibold'>Find your perfect match!</h2>
                 </div>
             </div>
           </section>
