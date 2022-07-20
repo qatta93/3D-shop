@@ -34,6 +34,14 @@
   "id": "lamp1",
   "type": "lamps",
   "name": "Night Lamp",
+  "price": "65$",
+  "color": "steel",
+  "description": "lorem ipsum lorem ipsum"
+},
+{
+  "id": "lamp2",
+  "type": "lamps",
+  "name": "Simple Lamp",
   "price": "100$",
   "color": "steel",
   "description": "lorem ipsum lorem ipsum"
