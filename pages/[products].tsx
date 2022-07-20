@@ -13,10 +13,16 @@ const Products: NextPage = () => {
 
   return (
     <main>
-    <h1 className='bg-emerald-200 py-4 text-center text-zinc-600 font-semibold uppercase text-lg'>{products}</h1>
-    <section className='py-12 bg-zinc-50'>
-      {furnitureDetails.map(item => item.type === products && <ProductCard key={item.id} item={item}/>)}
-    </section>
+      <section className='p-2'>
+        <a href="/" className='flex'>
+          <img src="images/arrow.png" alt="arrow"  className='h-5 mt-[3px]'/>
+          <p>HOME</p>
+        </a>
+      </section>
+      <h1 className='bg-emerald-200 py-4 text-center text-zinc-600 font-semibold uppercase text-lg'>{products}</h1>
+      <section className='py-12 bg-zinc-50'>
+        {furnitureDetails.map(item => item.type === products && <ProductCard key={item.id} item={item}/>)}
+      </section>
     </main>
   )
 }
