@@ -2,7 +2,7 @@
   "id": "chair1",
   "type": "chairs",
   "name": "Comfy Chair",
-  "price": "105$",
+  "price": "95$",
   "color": "black",
   "description": "lorem ipsum lorem ipsum"
 },
@@ -17,8 +17,16 @@
 {
   "id": "table1",
   "type": "tables",
-  "name": "Coffee Table",
-  "price": "200$",
+  "name": "Egiptian Table",
+  "price": "185$",
+  "color": "oak",
+  "description": "lorem ipsum lorem ipsum"
+},
+{
+  "id": "table2",
+  "type": "tables",
+  "name": "Antique Table",
+  "price": "300$",
   "color": "oak",
   "description": "lorem ipsum lorem ipsum"
 },
