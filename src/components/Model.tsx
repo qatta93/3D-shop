@@ -23,7 +23,7 @@ interface actions {
   };
 }
 
-const Model = () => {
+const Model = (item) => {
   const group:group = useRef();
   const actions:actions = useRef();
 
@@ -34,7 +34,7 @@ const Model = () => {
 
   useEffect(() => {
     const loader = new GLTFLoader();
-    loader.load("scene.gltf", async (gltf) => {
+    loader.load(`models/${item.item.type}/${item.id}.gltf`, async (gltf) => {
       const nodes = await gltf.parser.getDependencies("node");
       const animations = await gltf.parser.getDependencies("animation");
       setModel(nodes[0]);

@@ -1,8 +1,9 @@
 import type { NextPage } from 'next'
 import { useEffect, useState, useRef } from 'react'
 import { ItemCard } from '../src/components/ItemCard'
-import { FurnitureProps } from '@/components/types';
 import { gsap } from "gsap";
+import furniture from "../public/api/furniture.json"
+
 
 
 const Home: NextPage = () => {
@@ -48,27 +49,6 @@ const Home: NextPage = () => {
     }, 6500)
   }, [])
 
-
-  // add some database 
-  const furniture:FurnitureProps[] = [{
-    id: 1,
-    name: "chairs",
-    img: "/images/chair.jpg",
-    price: "95$",
-  },
-  {
-    id: 2,
-    name: "tables",
-    img: "/images/table.jpg",
-    price: "185$",
-  },
-  {
-    id: 3,
-    name: "lamps",
-    img: "/images/lamp.jpg",
-    price: "65$",
-  },
-]
 
   return (
       <div className='w-screen h-full'>

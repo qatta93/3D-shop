@@ -1,0 +1,19 @@
+[{
+  "id": 1,
+  "name": "chairs",
+  "img": "/images/chair.jpg",
+  "price": "95$"
+},
+{
+  "id": 2,
+  "name": "tables",
+  "img": "/images/table.jpg",
+  "price": "185$"
+},
+{
+  "id": 3,
+  "name": "lamps",
+  "img": "/images/lamp.jpg",
+  "price": "65$"
+}
+]
