@@ -26,7 +26,7 @@
 - GitHub actions for CI/CD pipeline
 
 ## Screenshots
-<video width="320" src="./public/screenshots/mobile_video.mp4" type="video/mp4"></video>
+<video width="320" src="./public/screenshots/mobile_video.mp4"></video>
 
 
 ## Setup
