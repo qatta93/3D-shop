@@ -8,7 +8,7 @@ export const ProductCard = (item) => {
 
   return (
     <div className="w-full mb-12 md:mb-20 border-1 bg-white border-indigo-600 shadow-xl md:w-[600px] xl:w-[500px] xl:mx-12 md:rounded-xl" onClick={() => setShowDetails(!showDetails)}>
-      <section className='pt-10 relative'>
+      <section className='pt-10 relative w-full h-full'>
         <Canvas camera={{ position: [0, 0, 300]}} > 
           <Lights />
           <Model id={item.item.id} item={item.item}/>

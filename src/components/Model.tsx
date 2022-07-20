@@ -66,7 +66,9 @@ const Model = (item) => {
           <primitive ref={group} name="Object_0" object={model} />
         </group>
       ) : (
-        <Html>Loading...</Html>
+        <Html>
+          <p>Loading..</p>
+        </Html>
       )}
     </>
   );
