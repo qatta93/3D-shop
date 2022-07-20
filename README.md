@@ -26,8 +26,8 @@
 - GitHub actions for CI/CD pipeline
 
 ## Screenshots
-<img src="./images/interior.gif" width="200">
-<img src="./screenshots/mobile.jpg" width="300">
+<img src="./public/images/interior.gif" width="200">
+<img src="./public/screenshots/mobile.jpg" width="300">
 
 
 ## Setup
