@@ -27,7 +27,7 @@
 
 ## Screenshots
 <video width="320" controls>
-  <source src="/public/screenshots/mobile_video.mp4" type="video/mp4">
+  <source src="./public/screenshots/mobile_video.mp4" type="video/mp4">
 </video>
 
 
