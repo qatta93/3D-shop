@@ -30,7 +30,7 @@ https://user-images.githubusercontent.com/57223600/179953149-ebf115e9-140d-4945-
 
 
 ## Setup
-The project is separated in two parts: client and server. If anybody wants to clone this project, they have to install dependencies using `npm install`, and then run the development local server using `npm run dev`. A list with all scrips is found in the package.json file.
+If anybody wants to clone this project, they have to install dependencies using `npm install`, and then run the development local server using `npm run dev`. A list with all scrips is found in the package.json file.
 
 ## Project Status
 The project is currently on progress, and some additional features will be included in the future.
