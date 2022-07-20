@@ -34,7 +34,7 @@ const Model = (item) => {
 
   useEffect(() => {
     const loader = new GLTFLoader();
-    loader.load(`models/${item.item.type}/${item.id}.gltf`, async (gltf) => {
+    loader.load(`models/${item.item.type}/${item.id}/scene.gltf`, async (gltf) => {
       const nodes = await gltf.parser.getDependencies("node");
       const animations = await gltf.parser.getDependencies("animation");
       setModel(nodes[0]);

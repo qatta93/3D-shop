@@ -2,16 +2,22 @@
   "id": "chair1",
   "type": "chairs",
   "name": "Comfy Chair",
-  "model": "placeholder",
   "price": "105$",
   "color": "black",
+  "description": "lorem ipsum lorem ipsum"
+},
+{
+  "id": "chair2",
+  "type": "chairs",
+  "name": "Victorian Style Chair",
+  "price": "350$",
+  "color": "oak",
   "description": "lorem ipsum lorem ipsum"
 },
 {
   "id": "table1",
   "type": "tables",
   "name": "Coffee Table",
-  "model": "placeholder",
   "price": "200$",
   "color": "oak",
   "description": "lorem ipsum lorem ipsum"
@@ -20,7 +26,6 @@
   "id": "lamp1",
   "type": "lamps",
   "name": "Night Lamp",
-  "model": "placeholder",
   "price": "100$",
   "color": "steel",
   "description": "lorem ipsum lorem ipsum"
