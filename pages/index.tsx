@@ -51,7 +51,7 @@ const Home: NextPage = () => {
 
 
   return (
-      <div className='w-screen h-full'>
+      <div className='w-screen h-full relative'>
         <main className='h-full relative flex-1'>
           <section className='w-screen h-[480px] sm:h-[650px] md:h-[870px] lg:h-[500px] xl:h-[620px] flex drop-shadow-lg'>
             <div className="relative w-screen overflow-hidden text-slate-800 text-center">
@@ -74,10 +74,6 @@ const Home: NextPage = () => {
             </div>
           </div>  
         </main>
-
-        <footer>
-
-        </footer>
       </div>
   )
 }
