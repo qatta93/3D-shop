@@ -1,4 +1,5 @@
 # 3D FURNITURE SHOP
+> The app is hosted in Vercel [_HERE._](https://3d-shop-qatta93.vercel.app/)
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -11,7 +12,7 @@
 ## General Information
 
 ### Idea
-> This app was created in order to make online shopping more user friendly. 3D models are more appealing for potential customers.
+This app was created in order to make online shopping more user friendly. 3D models are more appealing for potential customers.
 
 ## Technologies Used
 ### Front-end
