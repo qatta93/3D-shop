@@ -22,7 +22,7 @@ const Products: NextPage = () => {
         </Link>
       </section>
       <h1 className='bg-emerald-200 py-4 text-center text-zinc-600 font-semibold uppercase text-lg'>{products}</h1>
-      <section className='pt-20 h-full w-full flex flex-col xl:flex-row xl:flex-wrap justify-center items-center'>
+      <section className='pt-12 h-full w-full flex flex-col xl:flex-row xl:flex-wrap justify-center items-center'>
         {furnitureDetails.map(item => item.type === products && <ProductCard key={item.id} item={item}/>)}
       </section>
     </main>

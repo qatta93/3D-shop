@@ -67,7 +67,7 @@ const Home: NextPage = () => {
                 </div>
             </div>
           </section>
-          <div className='py-12 bg-zinc-50'>
+          <div className='py-12'>
             <h1 className='text-3xl md:text-4xl xl:text-5xl my-6 md:my-12 xl:mb-24 text-zinc-600 text-center'>Products:</h1>
             <div className='w-full flex flex-col xl:flex-row xl:flex-wrap justify-center items-center'>
               {furniture.map(item => <ItemCard key={item.id} item={item}/>)}
