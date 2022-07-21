@@ -7,8 +7,8 @@ export const ProductCard = (item) => {
   const [showDetails, setShowDetails] = useState<boolean>(false);
 
   return (
-    <div className="w-full mb-12 border-1 bg-white border-indigo-600 shadow-xl md:w-[600px] xl:w-[500px] xl:mx-12 md:rounded-xl cursor-pointer" onClick={() => setShowDetails(!showDetails)}>
-      <section className='pt-10 relative w-full h-full'>
+    <div className="w-full h-60 mb-12 border-1 bg-white border-indigo-600 shadow-xl md:w-[600px] xl:w-[500px] xl:mx-12 md:rounded-xl cursor-pointer" onClick={() => setShowDetails(!showDetails)}>
+      <section className='relative w-full h-full'>
         <Canvas camera={{ position: [0, 0, 300]}} > 
           <Lights />
           <Model id={item.item.id} item={item.item}/>

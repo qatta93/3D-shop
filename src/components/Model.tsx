@@ -35,6 +35,31 @@ const Model = (item) => {
   useEffect(() => {
     const loader = new GLTFLoader();
     loader.load(`models/${item.item.type}/${item.id}/scene.gltf`, async (gltf) => {
+      if(item.id === 'chair1') {
+        gltf.scene.children[0].scale.multiplyScalar(1.2);
+      }
+      if(item.id === 'chair2') {
+        gltf.scene.children[0].scale.multiplyScalar(1.9);
+        gltf.scene.children[0].position.set(0, -30, 0)
+      }
+      if(item.id === 'table1') {
+        gltf.scene.children[0].scale.multiplyScalar(6);
+        gltf.scene.children[0].position.set(0, 60, 0)
+      }
+      if(item.id === "table2") {
+        gltf.scene.children[0].scale.multiplyScalar(6);
+        gltf.scene.children[0].position.set(0, -10, 0)
+      }
+      if(item.id === 'lamp1') {
+        gltf.scene.children[0].scale.multiplyScalar(25);
+        gltf.scene.children[0].position.set(0, 60, 0)
+      }
+      if(item.id === "lamp2") {
+        gltf.scene.children[0].scale.multiplyScalar(23);
+        gltf.scene.children[0].position.set(0, 60, 0)
+      }
+
+
       const nodes = await gltf.parser.getDependencies("node");
       const animations = await gltf.parser.getDependencies("animation");
       setModel(nodes[0]);
@@ -62,7 +87,7 @@ const Model = (item) => {
     <>
       {model ? (
         /* @ts-ignore: Unreachable code error */
-        <group ref={group} position={[0, 0, 80]} dispose={null}>
+        <group ref={group} position={[0, -60, 80]} dispose={null}>
           <primitive ref={group} name="Object_0" object={model} />
         </group>
       ) : (
