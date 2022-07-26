@@ -6,7 +6,6 @@ import { Canvas } from '@react-three/fiber';
 export const ProductCard = (item) => {
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const [showModel, setShowModel] = useState<number>(1);
-  const [selectedView, setSelectedView] = useState<number>(1);
 
   return (
     <div className="w-full mb-12 border-1 bg-white border-indigo-600 shadow-xl md:w-[600px] xl:w-[500px] xl:mx-12 md:rounded-xl cursor-pointer">
@@ -26,10 +25,15 @@ export const ProductCard = (item) => {
         </Canvas>
         <img src="/images/loupe.png" alt="loupe" className='opacity-30 w-12 absolute bottom-4 right-4' />
       </section>}
+      {showModel === 3 &&
+        <section className="relative w-full h-full h-60">
+          <iframe className="relative w-full h-full h-60" title="Comfy Chair" frameBorder="0" allowFullScreen allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src={item.item.embed} />
+        </section>
+      }
       <section className='flex justify-center my-4'>
-        <img src={selectedView === 1 ? "images/circle_full.png" : "images/circle.png"} alt="circle" className='h-5 w-5 cursor-pointer' onClick={() => setSelectedView(1)}/>
-        <img src={selectedView === 2 ? "images/circle_full.png" : "images/circle.png"} alt="circle" className='h-5 w-5 mx-2 cursor-pointer' onClick={() => setSelectedView(2)}/>
-        <img src={selectedView === 3 ? "images/circle_full.png" : "images/circle.png"} alt="circle" className='h-5 w-5 cursor-pointer' onClick={() => setSelectedView(3)}/>
+        <img src={showModel === 1 ? "images/circle_full.png" : "images/circle.png"} alt="circle" className='h-5 w-5 cursor-pointer' onClick={() => setShowModel(1)}/>
+        <img src={showModel === 2 ? "images/circle_full.png" : "images/circle.png"} alt="circle" className='h-5 w-5 mx-2 cursor-pointer' onClick={() => setShowModel(2)}/>
+        <img src={showModel === 3 ? "images/circle_full.png" : "images/circle.png"} alt="circle" className='h-5 w-5 cursor-pointer' onClick={() => setShowModel(3)}/>
       </section>
       <section className="px-6 py-6 bg-slate-200 md:rounded-b-xl" onClick={() => setShowDetails(!showDetails)}>
         <div className='flex'>
