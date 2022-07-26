@@ -35,6 +35,9 @@ const Model = (item) => {
   useEffect(() => {
     const loader = new GLTFLoader();
     loader.load(`models/${item.item.type}/${item.id}/scene.gltf`, async (gltf) => {
+      // if(item.id === 'chair1' && top === true){
+      //   gltf.scene.children[0].scale.multiplyScalar(50);
+      // }
       if(item.id === 'chair1') {
         gltf.scene.children[0].scale.multiplyScalar(1.2);
       }

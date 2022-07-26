@@ -25,6 +25,7 @@ const Products: NextPage = () => {
       <section className='pt-12 h-full w-full flex flex-col xl:flex-row xl:flex-wrap justify-center items-center'>
         {furnitureDetails.map(item => item.type === products && <ProductCard key={item.id} item={item}/>)}
       </section>
+      <div className="sketchfab-embed-wrapper"> <iframe title="Comfy Chair" frameBorder="0" allowFullScreen allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/763c5061112d4432addd898b5f4a17ae/embed"> </iframe></div>
     </main>
   )
 }
