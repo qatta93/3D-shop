@@ -91,8 +91,9 @@ const Model = (item) => {
           <primitive ref={group} name="Object_0" object={model} />
         </group>
       ) : (
-        <Html>
+        <Html center style={{color: 'white', height: '6rem'}}>
           <p>Loading..</p>
+          <img src="images/loading2.gif" alt="" style={{height: '4rem', width: '15rem'}}/>
         </Html>
       )}
     </>
