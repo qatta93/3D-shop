@@ -38,26 +38,27 @@ const Model = (item) => {
     const loader = new GLTFLoader();
     loader.load(`models/${item.item.type}/${item.id}/scene.gltf`, async (gltf) => {
       if(item.id === 'chair1') {
-        gltf.scene.children[0].scale.multiplyScalar(1.2);
+        gltf.scene.children[0].scale.multiplyScalar(2.3);
+        gltf.scene.children[0].position.set(0, 60, 0)
       }
       if(item.id === 'chair2') {
-        gltf.scene.children[0].scale.multiplyScalar(1.9);
+        gltf.scene.children[0].scale.multiplyScalar(4);
         gltf.scene.children[0].position.set(0, -30, 0)
       }
       if(item.id === 'table1') {
-        gltf.scene.children[0].scale.multiplyScalar(6);
-        gltf.scene.children[0].position.set(0, 60, 0)
+        gltf.scene.children[0].scale.multiplyScalar(14);
+        gltf.scene.children[0].position.set(0, 80, 0)
       }
       if(item.id === "table2") {
-        gltf.scene.children[0].scale.multiplyScalar(6);
+        gltf.scene.children[0].scale.multiplyScalar(14);
         gltf.scene.children[0].position.set(0, -10, 0)
       }
       if(item.id === 'lamp1') {
-        gltf.scene.children[0].scale.multiplyScalar(25);
+        gltf.scene.children[0].scale.multiplyScalar(55);
         gltf.scene.children[0].position.set(0, 60, 0)
       }
       if(item.id === "lamp2") {
-        gltf.scene.children[0].scale.multiplyScalar(23);
+        gltf.scene.children[0].scale.multiplyScalar(50);
         gltf.scene.children[0].position.set(0, 60, 0)
       }
 

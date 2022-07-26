@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import Lights from './Lights';
 import Model from './Model';
 import { Canvas } from '@react-three/fiber';
+import ModelTop from './ModelTop';
 
 export const ProductCard = (item) => {
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const [showModel, setShowModel] = useState<number>(1);
+
+  const top = 'true';
 
   return (
     <div className="w-full mb-12 border-1 bg-white border-indigo-600 shadow-xl md:w-[600px] xl:w-[500px] xl:mx-12 md:rounded-xl cursor-pointer">
@@ -13,7 +16,7 @@ export const ProductCard = (item) => {
       <section className='relative w-full h-full h-60' onClick={() => setShowDetails(!showDetails)}>
         <Canvas camera={{ position: [0, 0, 300]}} > 
           <Lights />
-          <Model id={item.item.id} item={item.item} />
+          <Model id={item.item.id} item={item.item}/>
         </Canvas>
         <img src="/images/loupe.png" alt="loupe" className='opacity-30 w-12 absolute bottom-4 right-4' />
       </section>}
@@ -21,7 +24,7 @@ export const ProductCard = (item) => {
       <section className='relative w-full h-full h-60' onClick={() => setShowDetails(!showDetails)}>
         <Canvas camera={{ position: [10, 500, 300]}} > 
           <Lights />
-          <Model id={item.item.id} item={item.item} />
+          <ModelTop id={item.item.id} item={item.item}/>
         </Canvas>
         <img src="/images/loupe.png" alt="loupe" className='opacity-30 w-12 absolute bottom-4 right-4' />
       </section>}
