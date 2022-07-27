@@ -1,5 +1,5 @@
 # 3D FURNITURE SHOP
-> The app is hosted in Vercel [_HERE._](https://3d-shop-qatta93.vercel.app/)
+> The app is hosted in Vercel [_HERE._](https://3d-shop.vercel.app/)
 
 ## Table of Contents
 * [General Info](#general-information)
