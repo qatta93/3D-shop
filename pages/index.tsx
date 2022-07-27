@@ -28,7 +28,7 @@ const Home: NextPage = () => {
 
     setTimeout(function() {
       setShowGif(false)
-    }, 6100)
+    }, 6200)
   }, [])
 
 
