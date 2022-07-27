@@ -29,6 +29,7 @@ const Home: NextPage = () => {
         y: 0, 
       });
     }, 7200)
+    
 
     // gsap.from(bcgRef.current, {
     //   opacity: 0, 
