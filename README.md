@@ -7,6 +7,7 @@
 * [Screenshots](#screenshots)
 * [Setup](#setup)
 * [Project Status](#project-status)
+* [Future features](#future-features)
 
 
 ## General Information
@@ -35,3 +36,9 @@ If anybody wants to clone this project, they have to install dependencies using 
 
 ## Project Status
 The project is currently on progress, and some additional features will be included in the future.
+
+## Future features
+- user authentication
+- shopping cart
+- payments
+- 3D custom configurator based on parameters
