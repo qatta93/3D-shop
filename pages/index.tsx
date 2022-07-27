@@ -15,20 +15,31 @@ const Home: NextPage = () => {
 
 
   useEffect(() => {
-    
-    // gsap delay doesn't work with vercel
-    setTimeout(function() {
-      gsap.from(textRef.current, {
+
+    const tl = gsap.timeline({delay: 5, duration: 1});
+      tl.from(textRef.current, {
         opacity: 0, 
         y: 100, 
+      });
+      tl.to(textRef.current, {
+        opacity: 1,
         duration: 1,
+        y: 0
       });
-      gsap.to(textRef.current, {
-        css:{opacity: 1},
-        duration: -1,
-        y: 0, 
-      });
-    }, 7200)
+    
+    // gsap delay doesn't work with vercel
+    // setTimeout(function() {
+    //   gsap.from(textRef.current, {
+    //     opacity: 0, 
+    //     y: 100, 
+    //   });
+    //   gsap.to(textRef.current, {
+    //     opacity: 1,
+    //     duration: 1,
+    //     y: 0, 
+    //   });
+    //   setShowText(true)
+    // }, 7200)
 
 
     // gsap.from(bcgRef.current, {
@@ -69,7 +80,7 @@ const Home: NextPage = () => {
               {showGif && <img src="images/interior.gif" alt="interior" className='w-screen lg:w-3/5 lg:h-full absolute shadow-2xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-80'/>}
               {!showGif && <img src="images/interior_static.png" alt="interior" className='w-screen lg:w-3/5 lg:h-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '/>}
               <img src="images/interior_bcg_slide.png" alt="interior" className='w-screen lg:w-3/5 lg:h-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0' ref={bcgRef}/>
-                <div className='absolute align-middle w-full inset-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 my-10 opacity-0' ref={textRef}>
+                <div className='absolute align-middle w-full inset-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 my-10' ref={textRef}>
                   <h1 className="w-full py-2.5 sm:pt-10 md:pt-24 lg:pt-0 xl:pt-6 xl:text-4xl inset-x-0 text-3xl leading-4 font-extrabold">3D FURNITURE</h1>
                   <h2 className='w-full pt-3 italic text-2xl font-semibold'>Find your perfect match!</h2>
                 </div>
