@@ -24,12 +24,12 @@ const Home: NextPage = () => {
         duration: 1,
       });
       gsap.to(textRef.current, {
-        // css:{opacity: 1},
+        css:{opacity: 1},
         opacity: 1,
         y: 0, 
       });
     }, 7200)
-    
+
 
     // gsap.from(bcgRef.current, {
     //   opacity: 0, 
