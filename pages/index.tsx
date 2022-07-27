@@ -20,7 +20,7 @@ const Home: NextPage = () => {
 
     const tl2 = gsap.timeline({delay: 6.3});
       tl2.from(bcgRef.current, {opacity: 0, x: -640});
-      tl2.to(bcgRef.current, {opacity: .8, x: 0, duration: .4});
+      tl2.to(bcgRef.current, {opacity: .9, x: 0, duration: .4});
 
     const tl3 = gsap.timeline({delay: 6, duration: 3});
       tl3.from(bcgDarkRef.current, {opacity: 0});
@@ -28,7 +28,7 @@ const Home: NextPage = () => {
 
     setTimeout(function() {
       setShowGif(false)
-    }, 6000)
+    }, 6100)
   }, [])
 
 
