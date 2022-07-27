@@ -4,8 +4,6 @@ import { ItemCard } from '../src/components/ItemCard'
 import { gsap } from "gsap";
 import furniture from "../public/api/furniture.json"
 
-
-
 const Home: NextPage = () => {
   const [showGif, setShowGif] = useState<boolean>(true);
 
@@ -16,53 +14,18 @@ const Home: NextPage = () => {
 
   useEffect(() => {
 
-    const tl = gsap.timeline({delay: 5, duration: 1});
-      tl.from(textRef.current, {
-        opacity: 0, 
-        y: 100, 
-      });
-      tl.to(textRef.current, {
-        opacity: 1,
-        duration: 1,
-        y: 0
-      });
-    
-    // gsap delay doesn't work with vercel
-    // setTimeout(function() {
-    //   gsap.from(textRef.current, {
-    //     opacity: 0, 
-    //     y: 100, 
-    //   });
-    //   gsap.to(textRef.current, {
-    //     opacity: 1,
-    //     duration: 1,
-    //     y: 0, 
-    //   });
-    //   setShowText(true)
-    // }, 7200)
+    const tl = gsap.timeline({delay: 7.2, duration: 1});
+      tl.from(textRef.current, {opacity: 0, y: 100});
+      tl.to(textRef.current, {opacity: 1, duration: 1, y: 0});
 
+    const tl2 = gsap.timeline({delay: 10.3, duration: 1});
+      tl2.from(bcgRef.current, {opacity: 0, x: -640, duration: 1});
+      tl2.to(bcgRef.current, {opacity: .9, x: 0});
 
-    // gsap.from(bcgRef.current, {
-    //   opacity: 0, 
-    //   x: -640, 
-    //   duration: 1
-    // });
-    // gsap.to(bcgRef.current, {
-    //   opacity: .9, 
-    //   x: 0, 
-    //   delay: 10.3,
-    // });
-    // gsap.from(bcgDarkRef.current, {
-    //   opacity: 0, 
-    //   duration: 3
-    // });
-    // gsap.to(bcgDarkRef.current, {
-    //   opacity: .3, 
-    //   delay: 6.2,
-    // });
-    
+    const tl3 = gsap.timeline({delay: 6.2, duration: 3});
+      tl3.from(bcgDarkRef.current, {opacity: 0, duration: 3});
+      tl3.to(bcgDarkRef.current, {opacity: .3});
 
-    // this is working
     setTimeout(function() {
       setShowGif(false)
     }, 6500)
