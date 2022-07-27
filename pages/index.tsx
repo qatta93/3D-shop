@@ -33,7 +33,7 @@ const Home: NextPage = () => {
     gsap.to(bcgRef.current, {
       opacity: .9, 
       x: 0, 
-      delay: 6.3,
+      delay: 15.3,
     });
     gsap.from(bcgDarkRef.current, {
       opacity: 0, 
