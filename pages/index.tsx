@@ -15,16 +15,16 @@ const Home: NextPage = () => {
 
 
   useEffect(() => {
-    // gsap.from(textRef.current, {
-    //   opacity: 0, 
-    //   y: 100, 
-    //   duration: 1
-    // });
-    // gsap.to(textRef.current, {
-    //   opacity: 1, 
-    //   y: 0, 
-    //   delay: 7.2
-    // });
+    gsap.from(textRef.current, {
+      opacity: 0, 
+      y: 100, 
+      duration: 1
+    });
+    gsap.to(textRef.current, {
+      opacity: 1, 
+      y: 0, 
+      delay: 7.2
+    });
     // gsap.from(bcgRef.current, {
     //   opacity: 0, 
     //   x: -640, 
@@ -44,6 +44,8 @@ const Home: NextPage = () => {
     //   delay: 6.2,
     // });
     
+
+    // this is working
     setTimeout(function() {
       setShowGif(false)
     }, 6500)
