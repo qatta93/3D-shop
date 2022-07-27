@@ -23,8 +23,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>3D SHOP</title>
         <meta name="description" content="Find your perfect furniture" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js" integrity="sha512-DkPsH9LzNzZaZjCszwKrooKwgjArJDiEjA5tTgr3YX4E6TYv93ICS8T41yFHJnnSmGpnf0Mvb5NhScYbwvhn2w==" crossOrigin="anonymous"></script>
-	      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TimelineMax.min.js"></script>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
