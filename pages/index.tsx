@@ -40,8 +40,8 @@ const Home: NextPage = () => {
               <img src="images/interior_bcg.png" alt="Avatar" className="absolute object-cover w-full h-full opacity-10" />
               <img src="images/hexagon2.jpg" alt="Avatar" className="absolute object-cover w-full h-full opacity-40" />
               <img src="images/interior_bcg.png" alt="Avatar" className="absolute object-cover w-full h-full z-1" ref={bcgDarkRef}/>
-              {showGif && <img src="images/interior.gif" alt="interior" className='w-screen lg:w-3/5 lg:h-full absolute shadow-2xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-80'/>}
-              {!showGif && <img src="images/interior_static.png" alt="interior" className='w-screen lg:w-3/5 lg:h-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '/>}
+              {showGif && <img src="images/interior.gif" alt="interior" className='w-screen lg:w-3/5 lg:h-full absolute shadow-2xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10'/>}
+              <img src="images/interior_static.png" alt="interior" className='w-screen lg:w-3/5 lg:h-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '/>
               <img src="images/interior_bcg_slide.png" alt="interior" className='w-screen lg:w-3/5 lg:h-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0' ref={bcgRef}/>
                 <div className='absolute align-middle w-full inset-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 my-10' ref={textRef}>
                   <h1 className="w-full py-2.5 sm:pt-10 md:pt-24 lg:pt-0 xl:pt-6 xl:text-4xl inset-x-0 text-3xl leading-4 font-extrabold">3D FURNITURE</h1>
