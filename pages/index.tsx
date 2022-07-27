@@ -15,16 +15,19 @@ const Home: NextPage = () => {
 
 
   useEffect(() => {
-    gsap.from(textRef.current, {
-      opacity: 0, 
-      y: 100, 
-      duration: 1,
-      delay: 7.2
-    });
-    gsap.to(textRef.current, {
-      opacity: 1, 
-      y: 0, 
-    });
+    
+    // gsap delay doesn't work with vercel
+    setTimeout(function() {
+      gsap.from(textRef.current, {
+        opacity: 0, 
+        y: 100, 
+        duration: 1,
+      });
+      gsap.to(textRef.current, {
+        opacity: 1, 
+        y: 0, 
+      });
+    }, 7200)
     // gsap.from(bcgRef.current, {
     //   opacity: 0, 
     //   x: -640, 
