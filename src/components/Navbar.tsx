@@ -19,7 +19,7 @@ export const Navbar = () => {
             {!session ? (
               <button className='flex' onClick={() => signIn()}>
                 <UserIcon className="h-8 w-8 mx-2"/>
-                <p className='text-xl mr-4  sm:block'>LOGIN</p>
+                <p className='text-xl mr-4 hidden sm:block'>LOGIN</p>
               </button>
             ) : (
               <button className='flex' onClick={() => signOut()}>
