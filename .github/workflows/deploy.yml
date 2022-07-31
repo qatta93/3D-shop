@@ -1,7 +1,7 @@
 name: Deploy
 on:
   push:
-    branches: [vercel-gsap]
+    branches: [master]
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
