@@ -8,26 +8,30 @@ export const Navbar = () => {
   const { data: session } = useSession();
 
   return (
-    <nav className='flex flex-row px-6 py-4 text-zinc-600 justify-between border-b-[1px] border-zinc-600 bg-white'>
-      <Link href="/"><img src="images/logo.png" alt="logo" className='h-8 w-auto cursor-pointer'/></Link>
-      <div className='flex flex-row'>
-        <div>
-          {!session ? (
-            <button className='flex' onClick={() => signIn()}>
-              <UserIcon className="h-8 w-8 mx-2"/>
-              <p className='text-xl mr-4 hidden md:block'>LOGIN</p>
-            </button>
-          ) : (
-            <button onClick={() => signOut()}>
-              <UserIcon className="h-8 w-8 mx-2"/>
-              <p className='text-xl mr-4 hidden md:block'>LOGOUT</p>
-            </button>
-          )}
-          {session && <p>{session.user.email} is signed in</p>}
+    <nav className='px-6 pt-4 text-zinc-600 border-b-[1px] border-zinc-600 bg-white'>
+      <section className='flex flex-row justify-between pb-4'>
+        <Link href="/"><img src="images/logo.png" alt="logo" className='h-8 w-auto cursor-pointer'/></Link>
+        <div className='flex flex-row'>
+          <div>
+            {!session ? (
+              <button className='flex' onClick={() => signIn()}>
+                <UserIcon className="h-8 w-8 mx-2"/>
+                <p className='text-xl mr-4  md:block'>LOGIN</p>
+              </button>
+            ) : (
+              <button className='flex' onClick={() => signOut()}>
+                <UserIcon className="h-8 w-8 mx-2"/>
+                <p className='text-xl mr-4 hidden md:block'>LOGOUT</p>
+              </button>
+            )}
+          </div>
+          <ShoppingCartIcon className="h-8 w-8 sm:mx-2"/>
+          <p className='text-xl hidden md:block'>SHOP</p>
         </div>
-        <ShoppingCartIcon className="h-8 w-8 sm:mx-2"/>
-        <p className='text-xl hidden md:block'>SHOP</p>
-      </div>
+      </section>
+      <section className='justify-end mb-2 hidden md:flex'>
+        {session && <p><b>{session.user.email}</b> is signed in</p>}
+      </section>
     </nav>
   )
 }
