@@ -2,21 +2,39 @@ import React from 'react'
 import { UserIcon } from '@heroicons/react/solid'
 import { ShoppingCartIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
+import { signIn, signOut, useSession } from 'next-auth/react';
+import Image from 'next/image'
 
 export const Navbar = () => {
-
+  const { data: session } = useSession();
 
   return (
-    <nav className='flex flex-row px-6 py-4 text-zinc-600 justify-between border-b-[1px] border-zinc-600 bg-white'>
-      <Link href="/">
-        <img src="images/logo.png" alt="logo" className='h-8 w-auto cursor-pointer'/>
-      </Link>
-      <div className='flex flex-row'>
-        <UserIcon className="h-8 w-8 mx-2"/>
-        <p className='text-xl mr-4 hidden sm:block'>LOGIN</p>
-        <ShoppingCartIcon className="h-8 w-8 sm:mx-2"/>
-        <p className='text-xl hidden sm:block'>SHOP</p>
-      </div>
+    <nav className='px-6 pt-4 text-zinc-600 border-b-[1px] border-zinc-600 bg-white'>
+      <section className='flex flex-row justify-between pb-4'>
+        <Link href="/">
+          <Image src="/images/logo.png" alt="logo"  height={40} width={160} className='cursor-pointer'/>
+        </Link>
+        <div className='flex flex-row'>
+          <div>
+            {!session ? (
+              <button className='flex' onClick={() => signIn()}>
+                <UserIcon className="h-8 w-8 mx-2"/>
+                <p className='text-xl mr-4  sm:block'>LOGIN</p>
+              </button>
+            ) : (
+              <button className='flex' onClick={() => signOut()}>
+                <UserIcon className="h-8 w-8 mx-2"/>
+                <p className='text-xl mr-4 hidden sm:block'>LOGOUT</p>
+              </button>
+            )}
+          </div>
+          <ShoppingCartIcon className="h-8 w-8 sm:mx-2"/>
+          <p className='text-xl hidden sm:block'>SHOP</p>
+        </div>
+      </section>
+      <section className='justify-end mb-2 hidden sm:flex'>
+        {session && <p><b>{session.user.email}</b> is signed in</p>}
+      </section>
     </nav>
   )
 }
