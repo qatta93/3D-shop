@@ -13,7 +13,7 @@
 ## General Information
 
 ### Idea
-This app was created in order to make online shopping more user friendly. 3D models are more appealing for potential customers.
+This full stack app was created in order to make online shopping more user friendly. 3D models are more appealing for potential customers.
 
 ## Technologies Used
 ### Front-end
@@ -22,6 +22,12 @@ This app was created in order to make online shopping more user friendly. 3D mod
 - Three.JS
 - Tailwind
 - GreenSock
+
+### Back-end
+- Next.JS API (serverless)
+
+### Database
+- PostgreSQL + Prisma
 
 ### Deployment and hosting
 - Vercel
@@ -33,6 +39,15 @@ https://user-images.githubusercontent.com/57223600/179953149-ebf115e9-140d-4945-
 
 ## Setup
 If anybody wants to clone this project, they have to install dependencies using `npm install`, and then run the development local server using `npm run dev`. A list with all scrips is found in the package.json file.
+
+In order to run a local copy, users need to include an .env file in the server folder with the following information:
+- DATABASE_URL - URL to postgreSQL database.
+- GOOGLE_ID - Google credentials to enable authentication 
+- GOOGLE_SECRET - Google credentials to enable authentication 
+- GITHUB_CLIENT_ID - Google credentials to enable authentication 
+- GITHUB_CLIENT_SECRET - Google credentials to enable authentication
+- NEXTAUTH_URL - website url
+- SECRET - secret created randomly. You can use https://generate-secret.vercel.app/32 to generate it.
 
 ## Project Status
 The project is currently on progress, and some additional features will be included in the future.
