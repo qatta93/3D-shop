@@ -22,7 +22,7 @@ export const Navbar = () => {
                 <p className='text-xl mr-4 hidden sm:block'>LOGIN</p>
               </button>
             ) : (
-              <button className='flex' onClick={() => signOut({ callbackUrl: 'http://localhost:3000/' })}>
+              <button className='flex' onClick={() => signOut()}>
                 <UserIcon className="h-8 w-8 mx-2"/>
                 <p className='text-xl mr-4 hidden sm:block'>LOGOUT</p>
               </button>
