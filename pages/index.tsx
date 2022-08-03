@@ -3,15 +3,18 @@ import { useEffect, useState, useRef } from 'react'
 import { ItemCard } from '../src/components/ItemCard'
 import { gsap } from "gsap";
 import furniture from "../public/api/furniture.json"
+import { PrismaClient } from '@prisma/client'
 
-const Home: NextPage = () => {
+
+const Home: NextPage = (users) => {
   const [showGif, setShowGif] = useState<boolean>(true);
-
+  
   const bcgRef = useRef();
   const bcgDarkRef = useRef();
   const textRef = useRef();
-
-
+  
+  console.log(users)
+  
   useEffect(() => {
 
     const tl = gsap.timeline({delay: 7.6, duration: .4});
@@ -61,3 +64,12 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+export async function getStaticProps() {
+  const prisma = new PrismaClient()
+  const users = await prisma.user.findMany()
+
+  return {
+    props : { users}
+  }
+}

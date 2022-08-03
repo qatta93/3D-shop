@@ -2,8 +2,11 @@ import { EmailForm } from "@/components/EmailForm";
 import { getProviders, signIn, getSession , getCsrfToken } from "next-auth/react"
 import Image from 'next/image'
 
-export default function SignIn({ providers, csrfToken }) {
+export default async function SignIn ({ providers, csrfToken }) {
   console.log(providers)
+  const allUsers = await prisma.user.findMany()
+  console.log(allUsers)
+
   return (
     <section className="w-screen">
       <div className="flex justify-center content-center my-12">
