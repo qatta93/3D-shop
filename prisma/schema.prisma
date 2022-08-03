@@ -3,6 +3,10 @@ datasource db {
   provider = "postgresql"
 }
 
+generator client {
+  provider = "prisma-client-js"
+}
+
 model Account {
   id                 String  @id @default(cuid())
   userId             String

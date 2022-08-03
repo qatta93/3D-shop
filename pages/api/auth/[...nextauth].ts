@@ -23,36 +23,36 @@ export default NextAuth({
         }
       }
     }),
-    // Email({
-    //   server: {
-    //     host: process.env.EMAIL_SERVER_HOST,
-    //     port: process.env.EMAIL_SERVER_PORT,
-    //     auth: {
-    //       user: process.env.EMAIL_SERVER_USER,
-    //       pass: process.env.EMAIL_SERVER_PASSWORD
-    //     }
-    //   },
-    //   from: process.env.EMAIL_FROM
-    // }),
+    Email({
+      server: {
+        host: process.env.EMAIL_SERVER_HOST,
+        port: process.env.EMAIL_SERVER_PORT,
+        auth: {
+          user: process.env.EMAIL_SERVER_USER,
+          pass: process.env.EMAIL_SERVER_PASSWORD
+        }
+      },
+      from: process.env.EMAIL_FROM
+    }),
   ],
 
-  // database: process.env.DATABASE_URL,
-  // // @ts-ignore:next-line
-  // secret: process.env.SECRET,
+  database: process.env.DATABASE_URL,
+  // @ts-ignore:next-line
+  secret: process.env.SECRET,
 
-  // session: {
-  //   // @ts-ignore:next-line
-  //   jwt: true,
-  //   maxAge: 30 * 24 * 60 * 60, // 30 days
-  // },
+  session: {
+    // @ts-ignore:next-line
+    jwt: true,
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
 
-  // jwt: {
-  //   secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnX',
-  //   // encryption: true,
-  // },
+  jwt: {
+    secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnX',
+    // encryption: true,
+  },
 
-  // debug: true,
-  // adapter: PrismaAdapter(prisma),
+  debug: true,
+  adapter: PrismaAdapter(prisma),
   
   pages: {
     signIn: '/auth/signin',
