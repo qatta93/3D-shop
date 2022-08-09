@@ -27,10 +27,10 @@ const SignIn = ({ providers, csrfToken }) => {
           {Object.values(providers).map((provider) => (
             <div key={provider.name}>
               {/* google bad url */}
-              <Image src={`/images/google.png`} width={40} height={40} alt="google"/>
+              {/* <Image src={`/images/google.png`} width={110} height={45} alt="google" onClick={() => signIn(provider.id)} className='cursor-pointer'/> */}
               <button onClick={() => signIn(provider.id)} className='cursor-pointer'>
-                {provider.name === 'GitHub' && <Image src={`/images/${provider.name}.png`} width={40} height={40} alt={provider.name}/>}
-                {provider.name === 'Google' && <Image src={`/images/${provider.name}.png`} width={110} height={45} alt={provider.name}/>}
+                {provider.name === 'GitHub' && <Image src={`/images/github.png`} width={40} height={40} alt="github"/>}
+                {provider.name === 'Google' && <Image src={`/images/google.png`} width={110} height={45} alt="google"/>}
               </button>
             </div>
           ))}
