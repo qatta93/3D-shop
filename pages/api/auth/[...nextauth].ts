@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
 import Email from 'next-auth/providers/email'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import { PrismaClient } from "@prisma/client"
@@ -28,35 +29,76 @@ export default NextAuth({
         }
       }
     }),
-    Email({
-      server: {
-        host: process.env.EMAIL_SERVER_HOST,
-        port: process.env.EMAIL_SERVER_PORT,
-        auth: {
-          user: process.env.EMAIL_SERVER_USER,
-          pass: process.env.EMAIL_SERVER_PASSWORD
-        }
+    CredentialsProvider({
+      name: "credentials",
+      credentials: {
+        username: { label: "Email", type: "email", placeholder: "youremail@test.com"},
+        password: { label: "Password", type: "password"}
       },
-      from: process.env.EMAIL_FROM
+      authorize: (credentials, req) => {
+        // database look up
+        if(credentials.username === "john" && credentials.password === "test") {
+          return {
+            id: 2,
+            name: "john",
+            email: "johndoe@test.com"
+          }
+        }
+        // login failed
+        return null;
+      },
     }),
+    // Email({
+    //   server: {
+    //     host: process.env.EMAIL_SERVER_HOST,
+    //     port: process.env.EMAIL_SERVER_PORT,
+    //     auth: {
+    //       user: process.env.EMAIL_SERVER_USER,
+    //       pass: process.env.EMAIL_SERVER_PASSWORD
+    //     }
+    //   },
+    //   from: process.env.EMAIL_FROM
+    // }),
   ],
 
-  database: process.env.DATABASE_URL,
+  callbacks: {
+    jwt: ({ token, user }) => {
+      if(user){
+        token.id = user.id;
+      }
+      return token;
+    },
+    session: ({ session, token }) => {
+      if(token) {
+        session.id = token.id;
+      }
+      return session;
+    }
+  },
+
   // @ts-ignore:next-line
-  secret: process.env.SECRET,
-
-  session: {
-    // @ts-ignore:next-line
-    jwt: true,
-    maxAge: 30 * 24 * 60 * 60, // 30 days
-  },
-
+  secret: "test",
   jwt: {
-    secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnX',
-    // encryption: true,
+    secret: "test",
   },
 
-  debug: true,
+
+  // database: process.env.DATABASE_URL,
+  // // @ts-ignore:next-line
+  // secret: process.env.SECRET,
+
+  // session: {
+  //   // @ts-ignore:next-line
+  //   jwt: true,
+  //   maxAge: 30 * 24 * 60 * 60, // 30 days
+  // },
+
+  // jwt: {
+  //   secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnX',
+  //   // encryption: true,
+  // },
+
+  // debug: true,
   
   pages: {
     signIn: '/auth/signin',
