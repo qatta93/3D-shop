@@ -26,7 +26,8 @@ const SignIn = ({ providers, csrfToken }) => {
         <div className="flex justify-evenly pt-6">
           {Object.values(providers).map((provider) => (
             <div key={provider.name}>
-              <Image src={`/images/${provider.name}.png`} width={40} height={40} alt={provider.name}/>
+              {/* google bad url */}
+              <Image src={`/images/google.png`} width={40} height={40} alt="google"/>
               <button onClick={() => signIn(provider.id)} className='cursor-pointer'>
                 {provider.name === 'GitHub' && <Image src={`/images/${provider.name}.png`} width={40} height={40} alt={provider.name}/>}
                 {provider.name === 'Google' && <Image src={`/images/${provider.name}.png`} width={110} height={45} alt={provider.name}/>}
