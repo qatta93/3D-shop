@@ -21,7 +21,7 @@ const SignIn = ({ providers, csrfToken }) => {
         <Image src='/images/signin.png' width={150} height={150}/>
       </div>
       <article className="w-72 sm:w-96 lg:w-[450px] bg-white border-solid border-2 border-indigo-60 mx-auto py-12 px-4">
-        {/* <EmailForm csrfToken={csrfToken}/> */}
+        <EmailForm csrfToken={csrfToken}/>
         <p className="border-b-2 border-indigo-60 leading-[2px] text-center my-6"><span className="bg-white px-2 text-slate-500">or sign in with:</span></p>
         <div className="flex justify-evenly pt-6">
           {Object.values(providers).map((provider) => (
