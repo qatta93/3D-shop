@@ -3,14 +3,14 @@ import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import Email from 'next-auth/providers/email'
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import { PrismaClient } from "@prisma/client"
+// import { PrismaAdapter } from '@next-auth/prisma-adapter'
+// import { PrismaClient } from "@prisma/client"
 // import prisma from 'lib/prisma'
 
-const prisma = new PrismaClient()
+// const prisma = new PrismaClient()
 
 export default NextAuth({
-  adapter: PrismaAdapter(prisma),
+  // adapter: PrismaAdapter(prisma),
   secret: process.env.SECRET,
 
   providers: [
