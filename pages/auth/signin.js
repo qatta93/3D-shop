@@ -1,22 +1,31 @@
 import { EmailForm } from "@/components/EmailForm";
 import { getProviders, signIn, getSession , getCsrfToken } from "next-auth/react"
 import Image from 'next/image'
+import Link from 'next/link'
 
 
 const SignIn = ({ providers, csrfToken }) => {
   console.log(providers)
 
-
+  const externalProviders = Object.values(providers).filter(provider => provider.name !== "credentials");
 
   // const fetchData = async () => {
   //   const allUsers = await prisma.user.findMany()
   //   console.log(allUsers)
   // }
 
-
-
   return (
-    <section className="w-screen">
+    <>
+    <section className='p-2'>
+      <Link href="/" >
+        <div className='flex'>
+          <Image src="/images/arrow.png" alt="arrow" height={8} width={25}  className='cursor-pointer'/>
+          <p className='cursor-pointer'>HOME</p>
+        </div>
+      </Link>
+    </section>
+    <h1 className='bg-emerald-200 py-4 text-center text-zinc-600 font-semibold uppercase text-lg'>login</h1>
+    <section className="w-screen pb-20">
       <div className="flex justify-center content-center my-12">
         <Image src='/images/signin.png' width={150} height={150}/>
       </div>
@@ -24,7 +33,7 @@ const SignIn = ({ providers, csrfToken }) => {
         <EmailForm csrfToken={csrfToken}/>
         <p className="border-b-2 border-indigo-60 leading-[2px] text-center my-6"><span className="bg-white px-2 text-slate-500">or sign in with:</span></p>
         <div className="flex justify-evenly pt-6">
-          {Object.values(providers).map((provider) => (
+          {Object.values(externalProviders).map((provider) => (
             <div key={provider.name}>
               <button onClick={() => signIn(provider.id)} className='cursor-pointer'>
                 {provider.name === 'GitHub' && <Image src={`/images/github.png`} width={40} height={40} alt="github"/>}
@@ -35,6 +44,7 @@ const SignIn = ({ providers, csrfToken }) => {
         </div>
       </article>
     </section>
+    </>
   )
 }
 

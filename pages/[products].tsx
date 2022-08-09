@@ -1,11 +1,10 @@
-import Lights from '../src/components/Lights';
-import Model from '../src/components/Model';
 import { NextPage } from 'next'
 import React from 'react'
 import { useRouter } from 'next/router';
 import furnitureDetails from '../public/api/furnitureDetails.json';
 import { ProductCard } from '@/components/ProductCard';
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Products: NextPage = () => {
   const router = useRouter();
@@ -16,7 +15,7 @@ const Products: NextPage = () => {
       <section className='p-2'>
         <Link href="/" >
           <div className='flex'>
-            <img src="images/arrow.png" alt="arrow"  className='h-5 mt-[3px] cursor-pointer'/>
+            <Image src="/images/arrow.png" alt="arrow" height={8} width={25}  className='cursor-pointer'/>
             <p className='cursor-pointer'>HOME</p>
           </div>
         </Link>
