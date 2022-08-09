@@ -1,6 +1,7 @@
 import { EmailForm } from "@/components/EmailForm";
 import { getProviders, signIn, getSession , getCsrfToken } from "next-auth/react"
 import Image from 'next/image'
+import Img from 'react-optimized-image';
 
 
 const SignIn = ({ providers, csrfToken }) => {
@@ -27,7 +28,7 @@ const SignIn = ({ providers, csrfToken }) => {
           {Object.values(providers).map((provider) => (
             <div key={provider.name}>
               <button onClick={() => signIn(provider.id)} className='cursor-pointer'>
-                {provider.name === 'GitHub' && <Image src={`/images/${provider.name}.png`} width={40} height={40} alt={provider.name}/>}
+                {provider.name === 'GitHub' && <Img src={`/images/${provider.name}.png`} webp sizes={[45]} alt={provider.name}/>}
                 {provider.name === 'Google' && <Image src={`/images/${provider.name}.png`} width={110} height={45} alt={provider.name}/>}
               </button>
             </div>
