@@ -19,9 +19,6 @@ export const EmailForm = (csrfToken) => {
       setAuthState(old => ({ ...old, [e.target.id]: e.target.value }))
   }
 
-  console.log(authState)
-  console.log(pageState)
-
   // const simplifyError = (error) => {
   //     const errorMap = {
   //         "CredentialsSignin": "Invalid username or password"

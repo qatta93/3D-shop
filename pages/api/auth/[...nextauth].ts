@@ -7,20 +7,42 @@ import { PrismaClient } from "@prisma/client"
 import { useState } from "react";
 // import prisma from 'lib/prisma'
 
-// const prisma = new PrismaClient()
+const prisma = new PrismaClient()
 
-// const [users, setUsers] = useState([])
+interface UserProps {
+    id: string,
+    name: string,
+    email: string,
+    password: string,
+    emailVerified: null,
+    image: null
+}
 
-// const fetchData = async () => {
-//   const allUsers = await prisma.user.findMany()
-//   // setUsers(allUsers)
-// }
+const fetchData = async (credentials) => {
+  try {
+    const allUsers = await prisma.user.findMany();
+    console.log(allUsers)
+    console.log(credentials.email)
+    console.log(allUsers[0].email)
+    const findUser = allUsers.filter(user => credentials.email === user.email);
+    console.log(findUser.length > 0)
+    if (findUser.length > 0){
+      console.log('user found');
+      return true;
+    };
+    // return Promise.resolve('resolved true');
+  } catch {
+    console.log('user not found')
+    return false;
+  }
+}
 
-// fetchData();
 
 export default NextAuth({
   // adapter: PrismaAdapter(prisma),
   secret: process.env.SECRET,
+
+  
 
   providers: [
     GitHubProvider({
@@ -41,21 +63,23 @@ export default NextAuth({
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        email: { label: "Email", type: "email", placeholder: "youremail@test.com"},
-        password: { label: "Password", type: "password"}
+        email: { label: "Email", type: "email", placeholder: "Email address"},
+        password: { label: "Password", type: "Password"}
       },
       authorize: (credentials, req) => {
-        // database look up
-        if(credentials.email === "youremail@test.com" && credentials.password === "test") {
+        // console.log('credentials:', fetchData(credentials).then(res => console.log(res)))
+        // const resolvePromise = () => await fetchData(credentials);
+        console.log('resolvepromise', fetchData(credentials).then())
+        if(fetchData(credentials)) {
           console.log('login success')
           return {
-            name: "john",
-            email: "johndoe@test.com"
+            email: credentials.email
           }
         }
         // login failed
         console.log('login failed')
         return null;
+        // console.log(users);
       },
     }),
   ],
