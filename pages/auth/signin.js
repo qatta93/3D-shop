@@ -7,7 +7,7 @@ import Link from 'next/link'
 const SignIn = ({ providers, csrfToken }) => {
   console.log(providers)
 
-  const externalProviders = Object.values(providers).filter(provider => provider.name !== "credentials");
+  const externalProviders = Object.values(providers).filter(provider => provider.name !== "credentials" || provider.name !== "email");
 
   // const fetchData = async () => {
   //   const allUsers = await prisma.user.findMany()

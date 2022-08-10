@@ -2,12 +2,21 @@ import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import Email from 'next-auth/providers/email'
-// import { PrismaAdapter } from '@next-auth/prisma-adapter'
-// import { PrismaClient } from "@prisma/client"
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import { PrismaClient } from "@prisma/client"
+import { useState } from "react";
 // import prisma from 'lib/prisma'
 
 // const prisma = new PrismaClient()
+
+// const [users, setUsers] = useState([])
+
+// const fetchData = async () => {
+//   const allUsers = await prisma.user.findMany()
+//   // setUsers(allUsers)
+// }
+
+// fetchData();
 
 export default NextAuth({
   // adapter: PrismaAdapter(prisma),
@@ -32,33 +41,23 @@ export default NextAuth({
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        username: { label: "Email", type: "email", placeholder: "youremail@test.com"},
+        email: { label: "Email", type: "email", placeholder: "youremail@test.com"},
         password: { label: "Password", type: "password"}
       },
       authorize: (credentials, req) => {
         // database look up
-        if(credentials.username === "john" && credentials.password === "test") {
+        if(credentials.email === "youremail@test.com" && credentials.password === "test") {
+          console.log('login success')
           return {
-            id: 2,
             name: "john",
             email: "johndoe@test.com"
           }
         }
         // login failed
+        console.log('login failed')
         return null;
       },
     }),
-    // Email({
-    //   server: {
-    //     host: process.env.EMAIL_SERVER_HOST,
-    //     port: process.env.EMAIL_SERVER_PORT,
-    //     auth: {
-    //       user: process.env.EMAIL_SERVER_USER,
-    //       pass: process.env.EMAIL_SERVER_PASSWORD
-    //     }
-    //   },
-    //   from: process.env.EMAIL_FROM
-    // }),
   ],
 
   callbacks: {
