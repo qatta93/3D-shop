@@ -3,12 +3,25 @@ import Lights from './Lights';
 import Model from './Model';
 import { Canvas } from '@react-three/fiber';
 import ModelTop from './ModelTop';
+import Image from 'next/image'
+import { useSession } from 'next-auth/react';
 
 export const ProductCard = (item) => {
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const [showModel, setShowModel] = useState<number>(1);
 
   const top = 'true';
+  const { data: session } = useSession();
+
+  const addToCart = (event) => {
+    event.stopPropagation(); 
+    if (session) {
+      console.log('logged in')
+      return;
+    }
+      console.log('not logged in')
+
+  }
 
   return (
     <div className="w-full mb-12 border-1 bg-white border-indigo-600 shadow-xl md:w-[600px] xl:w-[500px] xl:mx-12 md:rounded-xl cursor-pointer">
@@ -40,8 +53,9 @@ export const ProductCard = (item) => {
       </section>
       <section className="px-6 py-6 bg-slate-200 md:rounded-b-xl" onClick={() => setShowDetails(!showDetails)}>
         <div className='flex'>
-          <h3 className="text-xl text-gray-700 flex-1 font-semibold uppercase">{item.item.name}</h3>
-          <p className="text-xl text-gray-900">{item.item.price}</p>
+          <h3 className="text-xl text-gray-700 flex-1 font-semibold uppercase mt-2">{item.item.name}</h3>
+          <p className="text-xl text-gray-900 mr-12 mt-2">{item.item.price}</p>
+          <Image src="/images/cart.png" alt="cart"  height={40} width={50} className='cursor-pointer' title='add to cart' onClick={() => addToCart(event)}/>
         </div>
         {showDetails &&
           <section className='pt-4'>
