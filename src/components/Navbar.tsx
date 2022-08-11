@@ -10,7 +10,7 @@ export const Navbar = () => {
   const { data: session } = useSession();
 
   const getLocalStorageProducts = typeof window !== 'undefined' && window.localStorage.getItem("state");
-  console.log(getLocalStorageProducts)
+  const getLocalStorageProductsParsed = JSON.parse(getLocalStorageProducts);
 
   return (
     <nav className='px-6 pt-4 text-zinc-600 border-b-[1px] border-zinc-600 bg-white'>
@@ -26,7 +26,7 @@ export const Navbar = () => {
             </button>
             <ShoppingCartIcon className="h-8 w-8 sm:mx-2"/>
             <p className='text-xl hidden sm:block'>SHOP</p>
-            {getLocalStorageProducts.length > 0 && <p className='text-xl hidden sm:block ml-2'>({getLocalStorageProducts.length})</p>}
+            {getLocalStorageProductsParsed.length > 0 && <p className='text-xl hidden sm:block ml-2'>({getLocalStorageProductsParsed.length})</p>}
           </div>
         ) : (
           <div className='flex flex-row'>

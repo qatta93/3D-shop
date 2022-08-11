@@ -2,9 +2,9 @@ import { useEffect, useReducer, createContext } from "react";
 import { product } from "./AppReducer";
 
 // initial state
-const initialState = {
-  products: {}
-};
+const initialState = [
+  {products: 'chair5'}, {products: 'chair9'}
+];
 
 // create context
 const Context = createContext({});

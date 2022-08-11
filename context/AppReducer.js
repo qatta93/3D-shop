@@ -1,10 +1,10 @@
 export function product(state, action) {
   switch (action.type) {
     case "ADD_PRODUCT_TO_CART":
-      return {
+      return [
         ...state,
-        products: action.payload
-      };
+        {products: action.payload}
+      ];
     default:
       return state;
   }

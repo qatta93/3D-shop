@@ -12,6 +12,7 @@ export const ProductCard = ({item}) => {
   const [showModel, setShowModel] = useState<number>(1);
   //@ts-ignore
   const { state, dispatch } = useContext(Context);
+  
 
   const { data: session } = useSession();
 
