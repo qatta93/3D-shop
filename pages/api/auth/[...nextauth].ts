@@ -37,12 +37,9 @@ const fetchData = async (credentials) => {
   }
 }
 
-
 export default NextAuth({
   // adapter: PrismaAdapter(prisma),
   secret: process.env.SECRET,
-
-  
 
   providers: [
     GitHubProvider({
