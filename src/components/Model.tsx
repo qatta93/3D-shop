@@ -27,8 +27,6 @@ const Model = (item) => {
   const group:group = useRef();
   const actions:actions = useRef();
 
-  console.log(top)
-
   const [model, setModel] = useState<Object3D | null>(null);
   const [animation, setAnimation] = useState<AnimationClip[] | null>(null);
 

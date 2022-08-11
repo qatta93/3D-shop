@@ -1,34 +1,9 @@
-// import { createContext, useContext, useMemo, useReducer } from "react";
-// import { AppReducer } from "./AppReducer";
-
-// const AppContext = createContext();
-
-// export const initialState = {
-//    number: 0,
-//  };
-
-// export function AppWrapper({ children }) {
-//    const { state, dispatch } = useReducer(AppReducer, initialState);
-//    const contextValue = useMemo(() => {
-//       return { state, dispatch };
-//    }, [state, dispatch]);
-
-//    return (
-//    <AppContext.Provider value={contextValue}>
-//       {children}
-//    </AppContext.Provider>
-//    );
-// }
-// export function useAppContext() {
-//    return useContext(AppContext);
-// }
-
-import { useState, useEffect, useReducer, createContext } from "react";
-import { user } from "./AppReducer";
+import { useEffect, useReducer, createContext } from "react";
+import { product } from "./AppReducer";
 
 // initial state
 const initialState = {
-  user: {},
+  products: {}
 };
 
 // create context
@@ -42,10 +17,31 @@ const combineReducers = (...reducers) => (state, action) => {
 
 // context provider
 const Provider = ({ children }) => {
-  const [state, dispatch] = useReducer(combineReducers(user), initialState); // pass more reducers combineReducers(user, blogs, products)
+  const [state, dispatch] = useReducer(combineReducers(product), initialState); // pass more reducers combineReducers(user, blogs, products)
   const value = { state, dispatch };
+
+  useEffect(() => {
+  
+    //checking if there already is a state in localstorage
+    //if yes, update the current state with the stored one
+
+    if (JSON.parse(localStorage.getItem("state"))) { 
+       dispatch({ 
+          type: "init_stored", 
+          value: JSON.parse(localStorage.getItem("state")),
+       });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (state !== initialState) {
+      //create and/or set a new localstorage variable called "state"
+       localStorage.setItem("state", JSON.stringify(state));
+    }
+  }, [state]);
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
+
 
 export { Context, Provider };

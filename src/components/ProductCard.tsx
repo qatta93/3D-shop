@@ -13,26 +13,22 @@ export const ProductCard = ({item}) => {
   //@ts-ignore
   const { state, dispatch } = useContext(Context);
 
-  // const { number } = state;
-  
-
-
   const { data: session } = useSession();
 
   const addToCart = (event) => {
     event.stopPropagation(); 
     if (session) {
       console.log('logged in')
-      // add product to database
+      // if user signed in, add product to database
       return;
     }
+      // add product to local storage
       console.log('not logged in')
       dispatch({
-        type: "LOGGED_IN_USER",
-        payload: "Ryan Dhungel",
+        type: "ADD_PRODUCT_TO_CART",
+        payload: item.id,
       })
       console.log(state)
-    // add product to local storage
   }
 
   return (
