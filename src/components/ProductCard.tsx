@@ -1,26 +1,38 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Lights from './Lights';
 import Model from './Model';
 import { Canvas } from '@react-three/fiber';
 import ModelTop from './ModelTop';
 import Image from 'next/image'
 import { useSession } from 'next-auth/react';
+import { Context } from "../../context/AppContext";
 
-export const ProductCard = (item) => {
+export const ProductCard = ({item}) => {
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const [showModel, setShowModel] = useState<number>(1);
+  //@ts-ignore
+  const { state, dispatch } = useContext(Context);
 
-  const top = 'true';
+  // const { number } = state;
+  
+
+
   const { data: session } = useSession();
 
   const addToCart = (event) => {
     event.stopPropagation(); 
     if (session) {
       console.log('logged in')
+      // add product to database
       return;
     }
       console.log('not logged in')
-
+      dispatch({
+        type: "LOGGED_IN_USER",
+        payload: "Ryan Dhungel",
+      })
+      console.log(state)
+    // add product to local storage
   }
 
   return (
@@ -29,7 +41,7 @@ export const ProductCard = (item) => {
       <section className='relative w-full h-full h-60' onClick={() => setShowDetails(!showDetails)}>
         <Canvas camera={{ position: [0, 0, 300]}} > 
           <Lights />
-          <Model id={item.item.id} item={item.item}/>
+          <Model id={item.id} item={item}/>
         </Canvas>
         <img src="/images/loupe.png" alt="loupe" className='opacity-30 w-12 absolute bottom-4 right-4' />
       </section>}
@@ -37,13 +49,13 @@ export const ProductCard = (item) => {
       <section className='relative w-full h-full h-60' onClick={() => setShowDetails(!showDetails)}>
         <Canvas camera={{ position: [10, 500, 300]}} > 
           <Lights />
-          <ModelTop id={item.item.id} item={item.item}/>
+          <ModelTop id={item.id} item={item}/>
         </Canvas>
         <img src="/images/loupe.png" alt="loupe" className='opacity-30 w-12 absolute bottom-4 right-4' />
       </section>}
       {showModel === 3 &&
         <section className="relative w-full h-full h-60">
-          <iframe className="relative w-full h-full h-60" title="Comfy Chair" frameBorder="0" allowFullScreen allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src={item.item.embed} />
+          <iframe className="relative w-full h-full h-60" title="Comfy Chair" frameBorder="0" allowFullScreen allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src={item.embed} />
         </section>
       }
       <section className='flex justify-center my-4'>
@@ -53,19 +65,19 @@ export const ProductCard = (item) => {
       </section>
       <section className="px-6 py-6 bg-slate-200 md:rounded-b-xl" onClick={() => setShowDetails(!showDetails)}>
         <div className='flex'>
-          <h3 className="text-xl text-gray-700 flex-1 font-semibold uppercase mt-2">{item.item.name}</h3>
-          <p className="text-xl text-gray-900 mr-12 mt-2">{item.item.price}</p>
+          <h3 className="text-xl text-gray-700 flex-1 font-semibold uppercase mt-2">{item.name}</h3>
+          <p className="text-xl text-gray-900 mr-12 mt-2">{item.price}</p>
           <Image src="/images/cart.png" alt="cart"  height={40} width={50} className='cursor-pointer' title='add to cart' onClick={() => addToCart(event)}/>
         </div>
         {showDetails &&
           <section className='pt-4'>
             <div className='flex justify-between'>
               <p className='font-semibold'>Colors:</p>
-              <p>{item.item.color}</p>
+              <p>{item.color}</p>
             </div>
             <div className='flex justify-between'>
               <p className='font-semibold'>Details:</p>
-              <p>{item.item.description}</p>
+              <p>{item.description}</p>
             </div>
           </section>
         }

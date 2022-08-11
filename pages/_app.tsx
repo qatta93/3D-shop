@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import Head from 'next/head';
 import { Layout } from '../src/components/Layout'
 import { SessionProvider } from "next-auth/react"
+import { Provider } from "../context/AppContext";
 
 function MyApp({  Component, pageProps: { session, ...pageProps }}: AppProps) {
   useEffect(() => {
@@ -27,9 +28,11 @@ function MyApp({  Component, pageProps: { session, ...pageProps }}: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SessionProvider session={session}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <Provider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Provider>
       </SessionProvider>
     </>
   )
