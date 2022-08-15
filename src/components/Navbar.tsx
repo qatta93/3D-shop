@@ -38,9 +38,13 @@ export const Navbar = () => {
               <UserIcon className="h-8 w-8 mx-2"/>
               <p className='text-xl mr-4 hidden sm:block'>LOGIN</p>
             </button>
-            <ShoppingCartIcon className="h-8 w-8 sm:mx-2"/>
-            <p className='text-xl hidden sm:block'>SHOP</p>
-            {initialProductsAmount > 0 && <p className='text-xl ml-2'>({initialProductsAmount})</p>}
+            <Link href="/cart">
+              <button className='flex'>
+                <ShoppingCartIcon className="h-8 w-8 sm:mx-2"/>
+                <p className='text-xl hidden sm:block'>SHOP</p>
+                {initialProductsAmount > 0 && <p className='text-xl ml-2'>({initialProductsAmount})</p>}
+              </button>
+            </Link>
           </div>
         ) : (
           <div className='flex flex-row'>
