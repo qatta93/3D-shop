@@ -12,5 +12,6 @@ export interface FurnitureDetailsProps {
   price: string,
   color: string,
   description: string,
-  embed: string
+  embed: string,
+  img: string
 }
