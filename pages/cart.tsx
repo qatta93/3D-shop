@@ -10,6 +10,10 @@ const Cart: NextPage = () => {
   const getLocalStorageProducts = typeof window !== 'undefined' && window.localStorage.getItem("state");
   const parseLocalStorageProducts = getLocalStorageProducts === undefined || getLocalStorageProducts === null ? 0 : JSON.parse(getLocalStorageProducts);
 
+  const totalPrice = parseLocalStorageProducts.map(product => product.price);
+  console.log(totalPrice)
+  console.log(parseLocalStorageProducts)
+
   return (
     <main>
       <section className='p-2'>
@@ -33,6 +37,13 @@ const Cart: NextPage = () => {
               {parseLocalStorageProducts.length === undefined && <p className="text-center mb-4 text-slate-400 text-xl text-amber-700 font-medium pb-6">Your shopping cart is empty!</p>}
               {parseLocalStorageProducts.length > 0 && parseLocalStorageProducts.map(product => <ShoppingCartItem key={generateUUID()} product={product}/>)}
             </div>
+            {parseLocalStorageProducts.length > 0 &&
+              <div className='pt-12 text-center mb-4 text-slate-400 text-xl'>
+                <h1 className='font-bold pb-6'>TOTAL:</h1>
+                <p className='shadow-inner mx-auto text-teal-400 font-bold w-32 p-3 text-center border-solid border-[1px] border-indigo-50 '>1240$</p>
+                <button className='text-white bg-teal-400 my-8 py-2 px-4 rounded-xl font-medium'>GO TO PAYMENT</button>
+              </div>
+            }
           </article>
         </section>
       </section>

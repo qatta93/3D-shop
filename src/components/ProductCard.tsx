@@ -29,11 +29,6 @@ export const ProductCard = ({item}) => {
       payload: item.id,
     })
   }
-  console.log(state)
-
-  useEffect(() => {
-    console.log('should update localstorage')
-  }, [state])
 
   return (
     <div className="w-full mb-12 border-1 bg-white border-indigo-600 shadow-xl md:w-[600px] xl:w-[500px] xl:mx-12 md:rounded-xl cursor-pointer">
