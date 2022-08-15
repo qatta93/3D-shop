@@ -1,17 +1,31 @@
-import React from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import { UserIcon } from '@heroicons/react/solid'
 import { ShoppingCartIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
-
+import { Context } from "../../context/AppContext";
 
 export const Navbar = () => {
   const { data: session } = useSession();
-
+  //@ts-ignore
+  const { state, dispatch } = useContext(Context);
+  
   const getLocalStorageProducts = typeof window !== 'undefined' && window.localStorage.getItem("state");
-  const getLocalStorageProductsParsed = JSON.parse(getLocalStorageProducts);
+  const initialProductsAmount = getLocalStorageProducts === undefined || getLocalStorageProducts === null ? 0 : JSON.parse(getLocalStorageProducts).length;
+  console.log(getLocalStorageProducts === undefined || getLocalStorageProducts === null ? 0 : JSON.parse(getLocalStorageProducts))
 
+  const [ productsAmount, setProductsAmount ] = useState<number>(initialProductsAmount)
+  
+  useEffect(() => {
+    if(state.length === 1){
+      return setProductsAmount(1)
+    }
+    setProductsAmount(initialProductsAmount)
+  }, [state]);
+
+  console.log(productsAmount)
+  
   return (
     <nav className='px-6 pt-4 text-zinc-600 border-b-[1px] border-zinc-600 bg-white'>
       <section className='flex flex-row justify-between pb-4'>
@@ -26,7 +40,7 @@ export const Navbar = () => {
             </button>
             <ShoppingCartIcon className="h-8 w-8 sm:mx-2"/>
             <p className='text-xl hidden sm:block'>SHOP</p>
-            {getLocalStorageProductsParsed.length > 0 && <p className='text-xl hidden sm:block ml-2'>({getLocalStorageProductsParsed.length})</p>}
+            {initialProductsAmount > 0 && <p className='text-xl ml-2'>({initialProductsAmount})</p>}
           </div>
         ) : (
           <div className='flex flex-row'>

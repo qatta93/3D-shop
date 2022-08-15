@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Lights from './Lights';
 import Model from './Model';
 import { Canvas } from '@react-three/fiber';
@@ -12,25 +12,28 @@ export const ProductCard = ({item}) => {
   const [showModel, setShowModel] = useState<number>(1);
   //@ts-ignore
   const { state, dispatch } = useContext(Context);
-  
-
   const { data: session } = useSession();
 
+  
   const addToCart = (event) => {
     event.stopPropagation(); 
+    // if user signed in, add product to database
     if (session) {
       console.log('logged in')
-      // if user signed in, add product to database
       return;
     }
-      // add product to local storage
-      console.log('not logged in')
-      dispatch({
-        type: "ADD_PRODUCT_TO_CART",
-        payload: item.id,
-      })
-      console.log(state)
+    // if not, add product to local storage
+    console.log('not logged in')
+    dispatch({
+      type: "ADD_PRODUCT_TO_CART",
+      payload: item.id,
+    })
   }
+  console.log(state)
+
+  useEffect(() => {
+    console.log('should update localstorage')
+  }, [state])
 
   return (
     <div className="w-full mb-12 border-1 bg-white border-indigo-600 shadow-xl md:w-[600px] xl:w-[500px] xl:mx-12 md:rounded-xl cursor-pointer">
