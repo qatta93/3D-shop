@@ -5,8 +5,7 @@ import furniture from "../../public/api/furnitureDetails.json"
 
 export const ShoppingCartItem = ({product}) => {
   const productDetails = furniture.filter(item => item.id === product.products);
-  console.log(productDetails)
-  console.log(product.products)
+
   return (
     <article className='flex justify-between rounded-lg shadow-xl shadow-slate-200 w-full py-3 pr-2 sm:p-3 text-center mt-3 mb-8 border-solid border-[1px] border-indigo-50 text-slate-400 font-medium'>
       <Image src={productDetails[0].img} alt="product" height={160} width={200}/>
