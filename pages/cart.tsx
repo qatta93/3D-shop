@@ -2,7 +2,7 @@ import { NextPage } from 'next'
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ShoppingCartItem } from '@/components/shoppingCartItem'
+import { ShoppingCartItem } from '../src/components/ShoppingCartItem'
 import { generateUUID } from 'three/src/math/MathUtils'
 
 const Cart: NextPage = () => {
@@ -26,7 +26,7 @@ const Cart: NextPage = () => {
           <div className="flex justify-center content-center my-12">
             <Image src='/images/trolley.png' width={150} height={150}/>
           </div>
-          <article className="w-full sm:w-[500px] lg:w-[650px] bg-white border-solid border-2 border-indigo-60 mx-auto py-12 sm:px-4">
+          <article className="w-full sm:w-[500px] md:w-[700px] md:px-16 bg-white border-solid border-2 border-indigo-60 mx-auto py-12 sm:px-4">
             <p className="text-center mb-4 text-slate-400 text-xl">Your shopping cart:</p>
             <p className="border-b-2 border-indigo-60 leading-[2px] text-center mb-6"></p>
             <div className="flex flex-col pt-6">
