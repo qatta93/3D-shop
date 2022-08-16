@@ -10,9 +10,9 @@ const Cart: NextPage = () => {
   const getLocalStorageProducts = typeof window !== 'undefined' && window.localStorage.getItem("state");
   const parseLocalStorageProducts = getLocalStorageProducts === undefined || getLocalStorageProducts === null ? 0 : JSON.parse(getLocalStorageProducts);
 
-  const totalPrice = parseLocalStorageProducts.map(product => product.price);
-  console.log(totalPrice)
-  console.log(parseLocalStorageProducts)
+  // const totalPrice = parseLocalStorageProducts.map(product => product.price);
+  // console.log(totalPrice)
+  // console.log(parseLocalStorageProducts)
 
   return (
     <main>

@@ -7,21 +7,23 @@ export const ShoppingCartItem = ({product}) => {
   const productDetails = furniture.filter(item => item.id === product.products);
 
   const getLocalStorageProducts = typeof window !== 'undefined' && window.localStorage.getItem("state");
+  
   const parseLocalStorageProducts = getLocalStorageProducts === undefined || getLocalStorageProducts === null ? 0 : JSON.parse(getLocalStorageProducts);
-
+  
   const [localStorageProducts, setLocalStorageProducts] = useState(parseLocalStorageProducts)
-
+  
   const deleteProduct = (id:string) => {
     const updateLocalStorage = parseLocalStorageProducts.filter(p => p.products !== id)
     return setLocalStorageProducts(updateLocalStorage)
   }
-
+  
   useEffect(() => {
-    // localStorage.setItem('state', localStorageProducts)
-  }, [localStorage])
-
-  console.log(localStorage)
-
+    localStorage.setItem('state', JSON.stringify(localStorageProducts))
+  }, [localStorageProducts])
+  
+  console.log(JSON.stringify(localStorageProducts))
+  console.log(getLocalStorageProducts)
+  
 
   return (
     <article className='flex justify-between rounded-lg shadow-xl shadow-slate-200 w-full py-3 pr-2 sm:p-3 text-center mt-3 mb-8 border-solid border-[1px] border-indigo-50 text-slate-400 font-medium'>
