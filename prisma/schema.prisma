@@ -43,6 +43,15 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  products      Products[]
+}
+
+model Products {
+  id            String    @id @default(cuid())
+  products      String
+  quantity      Int
+  userId       String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {

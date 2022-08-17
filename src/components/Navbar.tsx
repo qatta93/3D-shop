@@ -46,6 +46,7 @@ export const Navbar = () => {
               <p className='text-xl mr-4 hidden sm:block'>LOGOUT</p>
             </button>
             <ShoppingCartIcon className="h-8 w-8 sm:mx-2"/>
+            {/* read products in cart from localstorage and database */}
             <p className='text-xl hidden sm:block'>SHOP</p>
           </div>
         )}
