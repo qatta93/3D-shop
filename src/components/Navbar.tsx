@@ -13,7 +13,7 @@ export const Navbar = () => {
 
   const initialProductsAmount = state.length > 0 && state.map(item => item.quantity).reduce((a, b) => a + b, 0)
 
-  const [ productsAmount, setProductsAmount ] = useState<number>(initialProductsAmount)
+  const [ productsAmount, setProductsAmount ] = useState<number>(0)
 
   useEffect(() => {
     setProductsAmount(initialProductsAmount)

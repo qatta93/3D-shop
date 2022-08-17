@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ShoppingCartItem } from '../src/components/ShoppingCartItem'
@@ -11,13 +11,20 @@ const Cart: NextPage = () => {
 
   //@ts-ignore
   const { state } = useContext(Context);
+  const [products, setProducts] = useState([])
+  const [price, setPrice] = useState(0)
 
   const productsQuantityPrice = state.length > 0 && state.map(item => {
     const itemPrice = furniture.filter(product => product.id === item.products)[0].price.slice(0, -1);
     return Number(itemPrice) * item.quantity;
   });
-  
+
   const totalPrice = productsQuantityPrice.length > 0 && productsQuantityPrice.reduce((a:number, b:number) => a + b, 0);
+
+  useEffect(() => {
+    setPrice(totalPrice)
+    setProducts(state)
+  }, [state])
 
   return (
     <main>
@@ -39,13 +46,13 @@ const Cart: NextPage = () => {
             <p className="text-center mb-4 text-slate-400 text-xl">Your shopping cart:</p>
             <p className="border-b-2 border-indigo-60 leading-[2px] text-center mb-6"></p>
             <div className="flex flex-col pt-6">
-              {state.length === undefined && <p className="text-center mb-4 text-slate-400 text-xl text-amber-700 font-medium pb-6">Your shopping cart is empty!</p>}
-              {state.length > 0 && state.map(product => <ShoppingCartItem key={generateUUID()} product={product}/>)}
+              {state.length === 0 && <p className="text-center mb-4 text-slate-400 text-xl text-amber-700 font-medium pb-6">Your shopping cart is empty!</p>}
+              {products.length > 0 && products.map(product => <ShoppingCartItem key={generateUUID()} product={product}/>)}
             </div>
-            {state.length > 0 &&
+            {state.length !== 0 &&
               <div className='pt-12 text-center mb-4 text-slate-400 text-xl'>
                 <h1 className='font-bold pb-6'>TOTAL:</h1>
-                <p className='shadow-inner mx-auto text-teal-400 font-bold w-32 p-3 text-center border-solid border-[1px] border-indigo-50 '>{totalPrice} $</p>
+                <p className='shadow-inner mx-auto text-teal-400 font-bold w-32 p-3 text-center border-solid border-[1px] border-indigo-50 '>{price} $</p>
                 <button className='text-white bg-teal-400 my-8 py-2 px-4 rounded-xl font-medium'>GO TO PAYMENT</button>
               </div>
             }
