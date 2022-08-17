@@ -13,7 +13,6 @@ export const Navbar = () => {
   
   const getLocalStorageProducts = typeof window !== 'undefined' && window.localStorage.getItem("state");
   const initialProductsAmount = getLocalStorageProducts === undefined || getLocalStorageProducts === null ? 0 : JSON.parse(getLocalStorageProducts).length;
-  console.log(getLocalStorageProducts === undefined || getLocalStorageProducts === null ? 0 : JSON.parse(getLocalStorageProducts))
 
   const [ productsAmount, setProductsAmount ] = useState<number>(initialProductsAmount)
   
@@ -23,8 +22,6 @@ export const Navbar = () => {
     }
     setProductsAmount(initialProductsAmount)
   }, [state]);
-
-  console.log(productsAmount)
   
   return (
     <nav className='px-6 pt-4 text-zinc-600 border-b-[1px] border-zinc-600 bg-white'>

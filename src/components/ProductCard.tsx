@@ -14,19 +14,32 @@ export const ProductCard = ({item}) => {
   const { state, dispatch } = useContext(Context);
   const { data: session } = useSession();
 
+  console.log(state)
+
+  const findProductInState = state.filter(product => product.products === item.id);
+  console.log(findProductInState)
+  const findInitialProductQuantity = findProductInState.map(item => item.quantity)
+  console.log(findInitialProductQuantity)
   
   const addToCart = (event) => {
     event.stopPropagation(); 
     // if user signed in, add product to database
     if (session) {
-      console.log('logged in')
       return;
     }
     // if not, add product to local storage
-    console.log('not logged in')
+    if(findProductInState.length === 0){
+      dispatch({
+        type: "ADD_PRODUCT_TO_CART",
+        payload: item.id,
+        payloadQuantity: 1,
+      })
+      return;
+    }
     dispatch({
-      type: "ADD_PRODUCT_TO_CART",
+      type: "ADD_PRODUCT_QUANTITY",
       payload: item.id,
+      payloadQuantity: findInitialProductQuantity,
     })
   }
 

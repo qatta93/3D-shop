@@ -21,8 +21,8 @@ export const ShoppingCartItem = ({product}) => {
     localStorage.setItem('state', JSON.stringify(localStorageProducts))
   }, [localStorageProducts])
   
-  console.log(JSON.stringify(localStorageProducts))
-  console.log(getLocalStorageProducts)
+  // console.log(JSON.stringify(localStorageProducts))
+  // console.log(getLocalStorageProducts)
   
 
   return (
