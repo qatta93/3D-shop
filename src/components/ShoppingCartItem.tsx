@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import Image from 'next/image'
 import furniture from "../../public/api/furnitureDetails.json"
 import { Context } from "../../context/AppContext";
@@ -7,28 +7,17 @@ import { Context } from "../../context/AppContext";
 export const ShoppingCartItem = ({product}) => {
   const productDetails = furniture.filter(item => item.id === product.products);
 
-  const getLocalStorageProducts = typeof window !== 'undefined' && window.localStorage.getItem("state");
-  
-  const parseLocalStorageProducts = getLocalStorageProducts === undefined || getLocalStorageProducts === null ? 0 : JSON.parse(getLocalStorageProducts);
-  
-  const [localStorageProducts, setLocalStorageProducts] = useState(parseLocalStorageProducts)
-  
-  const deleteProduct = (id:string) => {
-    const updateLocalStorage = parseLocalStorageProducts.filter(p => p.products !== id)
-    return setLocalStorageProducts(updateLocalStorage)
-  }
-  
-  useEffect(() => {
-    localStorage.setItem('state', JSON.stringify(localStorageProducts))
-  }, [localStorageProducts])
-  
-  // console.log(JSON.stringify(localStorageProducts))
-  // console.log(getLocalStorageProducts)
-
   //@ts-ignore
   const { state, dispatch } = useContext(Context);
 
   const findQuantity = state.filter(item => item.products === productDetails[0].id)[0].quantity;
+  
+  const deleteProduct = () => {
+    dispatch({
+      type: "DELETE_PRODUCT_FROM_CART",
+      payload: productDetails[0].id,
+    })
+  }
 
   const addProduct = () => {
     dispatch({
@@ -63,7 +52,7 @@ export const ShoppingCartItem = ({product}) => {
         </div>
       </section>
       <div className='py-12'>
-       <Image src='/images/bin.png' alt="delete" height={50} width={40} className='cursor-pointer py-64 opacity-70' onClick={() => deleteProduct(productDetails[0].id)}/>
+       <Image src='/images/bin.png' alt="delete" height={50} width={40} className='cursor-pointer py-64 opacity-70' onClick={() => deleteProduct()}/>
       </div>
     </article>
   )

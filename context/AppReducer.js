@@ -5,6 +5,12 @@ export function product(state, action) {
         ...state,
         {products: action.payload, quantity: action.payloadQuantity }
       ];
+    case "DELETE_PRODUCT_FROM_CART":
+      const productToDeleteIndex = state.findIndex(item => item.products === action.payload);
+      if(productToDeleteIndex > 0)state.splice(productToDeleteIndex, 1)
+      return [
+        ...state,
+      ];
     case "ADD_PRODUCT_QUANTITY":
       const findIndex = state.findIndex(item => item.products === action.payload);
       state[findIndex] = {products: state[findIndex].products, quantity: Number(action.payloadQuantity) + 1}
