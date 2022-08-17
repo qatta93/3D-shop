@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Image from 'next/image'
 import furniture from "../../public/api/furnitureDetails.json"
+import { Context } from "../../context/AppContext";
 
 
 export const ShoppingCartItem = ({product}) => {
@@ -23,7 +24,11 @@ export const ShoppingCartItem = ({product}) => {
   
   // console.log(JSON.stringify(localStorageProducts))
   // console.log(getLocalStorageProducts)
-  
+
+  //@ts-ignore
+  const { state, dispatch } = useContext(Context);
+
+  const findQuantity = state.filter(item => item.products === productDetails[0].id)[0].quantity;
 
   return (
     <article className='flex justify-between rounded-lg shadow-xl shadow-slate-200 w-full py-3 pr-2 sm:p-3 text-center mt-3 mb-8 border-solid border-[1px] border-indigo-50 text-slate-400 font-medium'>
@@ -35,7 +40,7 @@ export const ShoppingCartItem = ({product}) => {
         <p className='font-light'>Quantity:</p>
         <div>
           <button className='rounded-lg shadow-xl shadow-slate-200 text-center border-solid border-[1px] border-indigo-50 text-slate-400 font-medium mt-2  mx-2 px-3'>-</button>
-          1
+          {findQuantity}
           <button className='rounded-lg shadow-xl shadow-slate-200 text-center border-solid border-[1px] border-indigo-50 text-slate-400 font-medium mt-2 mx-2 px-3'>+</button>
         </div>
       </section>
