@@ -10,14 +10,14 @@ import furniture from "../public/api/furnitureDetails.json"
 const Cart: NextPage = () => {
 
   //@ts-ignore
-  const { state, dispatch } = useContext(Context);
+  const { state } = useContext(Context);
 
   const productsQuantityPrice = state.map(item => {
     const itemPrice = furniture.filter(product => product.id === item.products)[0].price.slice(0, -1);
     return Number(itemPrice) * item.quantity;
   });
   
-  const totalPrice = productsQuantityPrice.reduce((a, b) => a + b, 0);
+  const totalPrice = productsQuantityPrice.reduce((a:number, b:number) => a + b, 0);
 
   return (
     <main>

@@ -9,7 +9,7 @@ import { Context } from "../../context/AppContext";
 export const Navbar = () => {
   const { data: session } = useSession();
   //@ts-ignore
-  const { state, dispatch } = useContext(Context);
+  const { state } = useContext(Context);
 
   const initialProductsAmount = state.length > 0 && state.map(item => item.quantity).reduce((a, b) => a + b, 0)
 

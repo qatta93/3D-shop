@@ -3,7 +3,6 @@ import Image from 'next/image'
 import furniture from "../../public/api/furnitureDetails.json"
 import { Context } from "../../context/AppContext";
 
-
 export const ShoppingCartItem = ({product}) => {
   const productDetails = furniture.filter(item => item.id === product.products);
 

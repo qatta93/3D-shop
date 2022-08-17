@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import Lights from './Lights';
 import Model from './Model';
 import { Canvas } from '@react-three/fiber';
