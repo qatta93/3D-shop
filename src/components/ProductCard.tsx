@@ -14,12 +14,8 @@ export const ProductCard = ({item}) => {
   const { state, dispatch } = useContext(Context);
   const { data: session } = useSession();
 
-  console.log(state)
-
   const findProductInState = state.filter(product => product.products === item.id);
-  console.log(findProductInState)
   const findInitialProductQuantity = findProductInState.map(item => item.quantity)
-  console.log(findInitialProductQuantity)
   
   const addToCart = (event) => {
     event.stopPropagation(); 
