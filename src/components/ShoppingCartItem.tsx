@@ -37,7 +37,7 @@ export const ShoppingCartItem = ({product}) => {
   }
 
   return (
-    <article className='flex justify-between rounded-lg shadow-xl shadow-slate-200 w-full py-3 pr-2 sm:p-3 text-center mt-3 mb-8 border-solid border-[1px] border-indigo-50 text-slate-400 font-medium'>
+    <article className='flex justify-between rounded-lg shadow-xl shadow-slate-200 w-full py-3 pr-2 sm:p-3 text-center mt-3 mb-8 border-solid border-[1px] border-indigo-50 text-slate-400 font-medium md:pr-8'>
       <Image src={productDetails[0].img} alt="product" height={160} width={200}/>
       <section className='flex flex-col justify-center'>
         <h1 className='text-md sm:text-xl font-bold'>{productDetails[0].name}</h1>
