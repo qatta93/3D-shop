@@ -10,16 +10,12 @@ export const Navbar = () => {
   const { data: session } = useSession();
   //@ts-ignore
   const { state, dispatch } = useContext(Context);
-  
-  const getLocalStorageProducts = typeof window !== 'undefined' && window.localStorage.getItem("state");
-  const initialProductsAmount = getLocalStorageProducts === undefined || getLocalStorageProducts === null ? 0 : JSON.parse(getLocalStorageProducts).length;
+
+  const initialProductsAmount = state.length > 0 && state.map(item => item.quantity).reduce((a, b) => a + b, 0)
 
   const [ productsAmount, setProductsAmount ] = useState<number>(initialProductsAmount)
-  
+
   useEffect(() => {
-    if(state.length === 1){
-      return setProductsAmount(1)
-    }
     setProductsAmount(initialProductsAmount)
   }, [state]);
   
@@ -39,7 +35,7 @@ export const Navbar = () => {
               <button className='flex'>
                 <ShoppingCartIcon className="h-8 w-8 sm:mx-2"/>
                 <p className='text-xl hidden sm:block'>SHOP</p>
-                {initialProductsAmount > 0 && <p className='text-xl ml-2'>({initialProductsAmount})</p>}
+                {productsAmount > 0 && <p className='text-xl ml-2'>({productsAmount})</p>}
               </button>
             </Link>
           </div>
