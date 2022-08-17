@@ -11,9 +11,13 @@ export function product(state, action) {
       return [
         ...state
       ];
+      case "SUBTRACT_PRODUCT_QUANTITY":
+        const index = state.findIndex(item => item.products === action.payload);
+        state[index] = {products: state[index].products, quantity: Number(action.payloadQuantity) - 1}
+        return [
+          ...state
+        ];
     default:
       return state;
-
   }
-
 }

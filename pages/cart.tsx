@@ -1,14 +1,15 @@
 import { NextPage } from 'next'
-import React from 'react'
+import React, { useContext } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ShoppingCartItem } from '../src/components/ShoppingCartItem'
 import { generateUUID } from 'three/src/math/MathUtils'
+import { Context } from "../context/AppContext";
 
 const Cart: NextPage = () => {
 
-  const getLocalStorageProducts = typeof window !== 'undefined' && window.localStorage.getItem("state");
-  const parseLocalStorageProducts = getLocalStorageProducts === undefined || getLocalStorageProducts === null ? 0 : JSON.parse(getLocalStorageProducts);
+  //@ts-ignore
+  const { state, dispatch } = useContext(Context);
 
   // const totalPrice = parseLocalStorageProducts.map(product => product.price);
   // console.log(totalPrice)
@@ -34,10 +35,10 @@ const Cart: NextPage = () => {
             <p className="text-center mb-4 text-slate-400 text-xl">Your shopping cart:</p>
             <p className="border-b-2 border-indigo-60 leading-[2px] text-center mb-6"></p>
             <div className="flex flex-col pt-6">
-              {parseLocalStorageProducts.length === undefined && <p className="text-center mb-4 text-slate-400 text-xl text-amber-700 font-medium pb-6">Your shopping cart is empty!</p>}
-              {parseLocalStorageProducts.length > 0 && parseLocalStorageProducts.map(product => <ShoppingCartItem key={generateUUID()} product={product}/>)}
+              {state.length === undefined && <p className="text-center mb-4 text-slate-400 text-xl text-amber-700 font-medium pb-6">Your shopping cart is empty!</p>}
+              {state.length > 0 && state.map(product => <ShoppingCartItem key={generateUUID()} product={product}/>)}
             </div>
-            {parseLocalStorageProducts.length > 0 &&
+            {state.length > 0 &&
               <div className='pt-12 text-center mb-4 text-slate-400 text-xl'>
                 <h1 className='font-bold pb-6'>TOTAL:</h1>
                 <p className='shadow-inner mx-auto text-teal-400 font-bold w-32 p-3 text-center border-solid border-[1px] border-indigo-50 '>1240$</p>
