@@ -77,7 +77,7 @@ export default async function auth(req, res){
             return user;
         }
         else {
-          throw new Error('User does not exists. Please make sure you insert the correct email & password.')
+          throw new Error('Login failed. Please make sure you insert the correct email and password.')
         }
       }
     }),
