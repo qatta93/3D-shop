@@ -41,17 +41,17 @@ export const ShoppingCartItem = ({product}) => {
       <Image src={productDetails[0].img} alt="product" height={160} width={200}/>
       <section className='flex flex-col justify-center'>
         <h1 className='text-md sm:text-xl font-bold'>{productDetails[0].name}</h1>
-        <p className='font-light'>Color: {productDetails[0].color}</p>
-        <p className='font-light'>Price: {productDetails[0].price}</p>
-        <p className='font-light'>Quantity:</p>
+        <p className='font-light text-sm sm:text-md'>Color: {productDetails[0].color}</p>
+        <p className='font-light text-sm sm:text-md'>Price: {productDetails[0].price}</p>
+        <p className='font-light text-sm sm:text-md'>Quantity:</p>
         <div>
-          <button className='rounded-lg shadow-xl shadow-slate-200 text-center border-solid border-[1px] border-indigo-50 text-slate-400 font-medium mt-2  mx-2 px-3' onClick={() => subtractProduct()}>-</button>
+          <button className='rounded-lg shadow-xl shadow-slate-200 text-center border-solid border-[1px] border-indigo-50 text-slate-400 font-medium mt-2 mx-1 sm:mx-2 px-2 sm:px-3' onClick={() => subtractProduct()}>-</button>
           {findQuantity}
-          <button className='rounded-lg shadow-xl shadow-slate-200 text-center border-solid border-[1px] border-indigo-50 text-slate-400 font-medium mt-2 mx-2 px-3' onClick={() => addProduct()}>+</button>
+          <button className='rounded-lg shadow-xl shadow-slate-200 text-center border-solid border-[1px] border-indigo-50 text-slate-400 font-medium mt-2 mx-1 sm:mx-2 px-2 sm:px-3' onClick={() => addProduct()}>+</button>
         </div>
       </section>
       <div className='py-12'>
-       <Image src='/images/bin.png' alt="delete" height={50} width={40} className='cursor-pointer py-64 opacity-70' onClick={() => deleteProduct()}/>
+       <Image src='/images/bin.png' alt="delete" height={45} width={37} className='cursor-pointer py-64 opacity-70' onClick={() => deleteProduct()}/>
       </div>
     </article>
   )
