@@ -52,7 +52,7 @@ export const Navbar = () => {
         )}
       </section>
       <section className='justify-end mb-2 flex text-xs text-gray text-zinc-500'>
-        {session && session.user.email && 
+        {session &&
           <>
             <p className='my-auto'><b>{session.user.email}</b> is signed in</p>
             <button className='flex' onClick={() => signOut()}>

@@ -37,7 +37,8 @@ const fetchData = async (credentials) => {
   }
 }
 
-export default NextAuth({
+export default async function auth(req, res){
+  return await NextAuth(req, res, {
   // adapter: PrismaAdapter(prisma),
   secret: process.env.SECRET,
 
@@ -63,22 +64,22 @@ export default NextAuth({
         email: { label: "Email", type: "email", placeholder: "Email address"},
         password: { label: "Password", type: "Password"}
       },
-      authorize: (credentials, req) => {
-        // console.log('credentials:', fetchData(credentials).then(res => console.log(res)))
-        // const resolvePromise = () => await fetchData(credentials);
-        console.log('resolvepromise', fetchData(credentials).then())
-        if(fetchData(credentials)) {
-          console.log('login success')
-          return {
-            // email: credentials.email,
-            // login: 'success'
-            login: 'failed'
+      async authorize(credentials) {
+        const user = await prisma.user.findFirst({
+          where: {
+              email: credentials.email,
+              password: credentials.password
           }
+        });
+
+        if (user !== null)
+        {
+            return user;
         }
-        // login failed
-        console.log('login failed')
-        return {login: 'failed'};
-      },
+        else {
+          throw new Error('User does not exists. Please make sure you insert the correct email & password.')
+        }
+      }
     }),
   ],
 
@@ -128,4 +129,4 @@ export default NextAuth({
     verifyRequest: '/auth/verify-request', // (used for check email message)
     newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
   },
-});
+})};
