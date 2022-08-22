@@ -70,13 +70,14 @@ export default NextAuth({
         if(fetchData(credentials)) {
           console.log('login success')
           return {
-            email: credentials.email
+            // email: credentials.email,
+            // login: 'success'
+            login: 'failed'
           }
         }
         // login failed
         console.log('login failed')
-        return null;
-        // console.log(users);
+        return {login: 'failed'};
       },
     }),
   ],
