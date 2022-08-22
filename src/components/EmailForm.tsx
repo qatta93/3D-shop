@@ -37,6 +37,7 @@ export const EmailForm = (csrfToken) => {
               // Authenticate user
               router.push("/")
           } else {
+            setAuthState({email: '', password: ''})
               setPageState(old => ({ ...old, processing: false, error: response.error }))
           }
       }).catch(error => {
