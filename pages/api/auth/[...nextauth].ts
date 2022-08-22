@@ -37,7 +37,8 @@ const fetchData = async (credentials) => {
   }
 }
 
-export default NextAuth({
+export default async function auth(req, res){
+  return await NextAuth(req, res, {
   // adapter: PrismaAdapter(prisma),
   secret: process.env.SECRET,
 
@@ -61,23 +62,24 @@ export default NextAuth({
       name: "credentials",
       credentials: {
         email: { label: "Email", type: "email", placeholder: "Email address"},
-        password: { label: "Password", type: "Password"}
+        password: { label: "Password", type: "password"}
       },
-      authorize: (credentials, req) => {
-        // console.log('credentials:', fetchData(credentials).then(res => console.log(res)))
-        // const resolvePromise = () => await fetchData(credentials);
-        console.log('resolvepromise', fetchData(credentials).then())
-        if(fetchData(credentials)) {
-          console.log('login success')
-          return {
-            email: credentials.email
+      async authorize(credentials) {
+        const user = await prisma.user.findFirst({
+          where: {
+              email: credentials.email,
+              password: credentials.password
           }
+        });
+
+        if (user !== null)
+        {
+            return user;
         }
-        // login failed
-        console.log('login failed')
-        return null;
-        // console.log(users);
-      },
+        else {
+          throw new Error('Login failed. Please make sure you insert the correct email and password.')
+        }
+      }
     }),
   ],
 
@@ -125,6 +127,6 @@ export default NextAuth({
     signOut: '/auth/signout',
     error: '/auth/error', // Error code passed in query string as ?error=
     verifyRequest: '/auth/verify-request', // (used for check email message)
-    newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
+    newUser: '/auth/register' // New users will be directed here on first sign in (leave the property out if not of interest)
   },
-});
+})};
