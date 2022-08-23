@@ -78,22 +78,3 @@ const Register = () => {
 }
 
 export default Register;
-
-
-// export async function getServerSideProps(context) {
-//   const { req } = context;
-//   const session = await getSession({ req });
-
-//   if (session) {
-//     return {
-//       redirect: { destination: "/" },
-//     };
-//   }
-
-//   return {
-//     props: {
-//       providers: await getProviders(context),
-//       csrfToken: await getCsrfToken(context),
-//     },
-//   };
-// }
