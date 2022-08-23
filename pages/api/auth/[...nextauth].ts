@@ -30,6 +30,7 @@ export default async function auth(req, res){
     CredentialsProvider({
       name: "credentials",
       credentials: {
+        name: { label: "Name", type: "text"},
         email: { label: "Email", type: "email", placeholder: "Email address"},
         password: { label: "Password", type: "password"}
       },
@@ -46,8 +47,15 @@ export default async function auth(req, res){
             return user;
         }
         else {
-          throw new Error('Login failed. Please make sure you insert the correct email and password.')
-        }
+          if(credentials.name){
+            const newUser = {
+              name: credentials.name,
+              email: credentials.email,
+              password: credentials.password,
+            }
+            return await prisma.user.create({ data: newUser })
+          }
+          throw new Error('Login failed. Please make sure you insert the correct email and password.')        }
       }
     }),
   ],
