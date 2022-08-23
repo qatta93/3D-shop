@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
-
+import { signIn } from 'next-auth/react'
 
 const Register = () => {
 
@@ -12,7 +12,19 @@ const Register = () => {
     repeatPassword: ''
   })
 
-  const [errorMsg, setErrorMsg] = useState(null)
+  const newUser = {
+    name: formState.name,
+    email: formState.email,
+    password: formState.password,
+  }
+
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [register, setRegister] = useState(false)
+
+  const [pageState, setPageState] = useState({
+    error: '',
+    processing: false
+  })
 
   const handleFieldChange = (e) => {
     setFormState(old => ({ ...old, [e.target.id]: e.target.value }))
@@ -40,8 +52,24 @@ const Register = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(newUser)
     if(formValidator(formState) === true){
-      return console.log('dziala')
+      setPageState(old => ({...old, processing: true, error: ''}))
+      signIn('credentials', {
+          ...newUser,
+          redirect: false
+      }).then(response => {
+          console.log(response)
+          if (response.ok) {
+            setFormState({name: '', email: '', password: '', repeatPassword: ''})
+            setRegister(true)
+          } else {
+            setPageState(old => ({ ...old, processing: false, error: response.error }))
+          }
+      }).catch(error => {
+          setPageState(old => ({...old, processing: false, error: error.message ?? "Something went wrong!"}))
+      })
+      return
     }
     return setErrorMsg(formValidator(formState))
   }
@@ -69,6 +97,11 @@ const Register = () => {
           <input type="password" id="repeatPassword" name="repeatPassword" placeholder='Repeat password *' onChange={handleFieldChange} value={formState.repeatPassword} className='shadow-inner text-slate-300 w-full p-3 text-center border-solid border-[1px] border-indigo-50 mt-2 font-light'/>
           <button type="submit" className='shadow-xl shadow-slate-200 w-full p-3 text-center mt-3 mb-8 border-solid border-[1px] border-indigo-50 text-slate-500 font-medium' onClick={handleSubmit}>REGISTER</button>
           {errorMsg !== null && <p className='text-rose-700 text-center mb-8'>{errorMsg}</p>}
+          {register === true && 
+          <>
+            <p className='text-emerald-500 text-center mb-2'>Your account has been created!</p>
+            <p className='text-emerald-500 text-center mb-2'>Now you are signed in.</p>
+          </>}
         </form>
 
       </article>
