@@ -18,25 +18,6 @@ interface UserProps {
     image: null
 }
 
-const fetchData = async (credentials) => {
-  try {
-    const allUsers = await prisma.user.findMany();
-    console.log(allUsers)
-    console.log(credentials.email)
-    console.log(allUsers[0].email)
-    const findUser = allUsers.filter(user => credentials.email === user.email);
-    console.log(findUser.length > 0)
-    if (findUser.length > 0){
-      console.log('user found');
-      return true;
-    };
-    // return Promise.resolve('resolved true');
-  } catch {
-    console.log('user not found')
-    return false;
-  }
-}
-
 export default async function auth(req, res){
   return await NextAuth(req, res, {
   // adapter: PrismaAdapter(prisma),
@@ -61,6 +42,7 @@ export default async function auth(req, res){
     CredentialsProvider({
       name: "credentials",
       credentials: {
+        name: { label: "Name", type: "text"},
         email: { label: "Email", type: "email", placeholder: "Email address"},
         password: { label: "Password", type: "password"}
       },
@@ -77,10 +59,21 @@ export default async function auth(req, res){
             return user;
         }
         else {
+
+          if(credentials.name){
+            const newUser = {
+              name: credentials.name,
+              email: credentials.email,
+              password: credentials.password,
+            }
+            return await prisma.user.create({ data: newUser })
+          }
+
           throw new Error('Login failed. Please make sure you insert the correct email and password.')
         }
       }
-    }),
+    },
+    ),
   ],
 
   callbacks: {
@@ -127,7 +120,7 @@ export default async function auth(req, res){
     signOut: '/auth/signout',
     error: '/auth/error', // Error code passed in query string as ?error=
     verifyRequest: '/auth/verify-request', // (used for check email message)
-    newUser: '/auth/register' // New users will be directed here on first sign in (leave the property out if not of interest)
+    newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
   },
 })};
 
