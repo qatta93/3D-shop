@@ -52,12 +52,12 @@ export const Navbar = () => {
         )}
       </section>
       <section className='justify-end mb-2 flex text-xs text-gray text-zinc-500'>
-        {session &&
+        {session && 
           <>
-            <p className='my-auto'><b>{session.user.email}</b> is signed in</p>
-            <button className='flex' onClick={() => signOut()}>
-            <p className='text-[18px] ml-2 p-1 sm:hidden font-medium shadow-xl shadow-slate-200 border-solid border-[1px] border-indigo-50'>LOGOUT</p>
-            </button>
+          <p className='my-auto'><b>{session.user.email}</b> is signed in</p>
+          <button className='flex' onClick={() => signOut()}>
+          <p className='text-[18px] ml-2 p-1 sm:hidden font-medium shadow-xl shadow-slate-200 border-solid border-[1px] border-indigo-50'>LOGOUT</p>
+          </button>
           </>
         }
       </section>

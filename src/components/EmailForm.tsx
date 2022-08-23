@@ -29,7 +29,7 @@ export const EmailForm = (csrfToken) => {
           if (response.ok) {
               router.push("/")
           } else {
-              setAuthState({email: '', password: ''})
+            setAuthState({email: '', password: ''})
               setPageState(old => ({ ...old, processing: false, error: response.error }))
           }
       }).catch(error => {

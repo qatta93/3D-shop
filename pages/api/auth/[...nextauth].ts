@@ -62,7 +62,7 @@ export default async function auth(req, res){
       name: "credentials",
       credentials: {
         email: { label: "Email", type: "email", placeholder: "Email address"},
-        password: { label: "Password", type: "Password"}
+        password: { label: "Password", type: "password"}
       },
       async authorize(credentials) {
         const user = await prisma.user.findFirst({
@@ -130,3 +130,4 @@ export default async function auth(req, res){
     newUser: '/auth/register' // New users will be directed here on first sign in (leave the property out if not of interest)
   },
 })};
+
