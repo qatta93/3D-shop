@@ -2,43 +2,13 @@ import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import { PrismaClient } from "@prisma/client"
-import { useState } from "react";
-// import prisma from 'lib/prisma'
 
 const prisma = new PrismaClient()
 
-interface UserProps {
-    id: string,
-    name: string,
-    email: string,
-    password: string,
-    emailVerified: null,
-    image: null
-}
+export default async function auth(req, res){
+  return await NextAuth(req, res, {
 
-const fetchData = async (credentials) => {
-  try {
-    const allUsers = await prisma.user.findMany();
-    console.log(allUsers)
-    console.log(credentials.email)
-    console.log(allUsers[0].email)
-    const findUser = allUsers.filter(user => credentials.email === user.email);
-    console.log(findUser.length > 0)
-    if (findUser.length > 0){
-      console.log('user found');
-      return true;
-    };
-    // return Promise.resolve('resolved true');
-  } catch {
-    console.log('user not found')
-    return false;
-  }
-}
-
-export default NextAuth({
-  // adapter: PrismaAdapter(prisma),
   secret: process.env.SECRET,
 
   providers: [
@@ -60,24 +30,33 @@ export default NextAuth({
     CredentialsProvider({
       name: "credentials",
       credentials: {
+        name: { label: "Name", type: "text"},
         email: { label: "Email", type: "email", placeholder: "Email address"},
-        password: { label: "Password", type: "Password"}
+        password: { label: "Password", type: "password"}
       },
-      authorize: (credentials, req) => {
-        // console.log('credentials:', fetchData(credentials).then(res => console.log(res)))
-        // const resolvePromise = () => await fetchData(credentials);
-        console.log('resolvepromise', fetchData(credentials).then())
-        if(fetchData(credentials)) {
-          console.log('login success')
-          return {
-            email: credentials.email
+      async authorize(credentials) {
+        const user = await prisma.user.findFirst({
+          where: {
+              email: credentials.email,
+              password: credentials.password
           }
+        });
+
+        if (user !== null)
+        {
+            return user;
         }
-        // login failed
-        console.log('login failed')
-        return null;
-        // console.log(users);
-      },
+        else {
+          if(credentials.name){
+            const newUser = {
+              name: credentials.name,
+              email: credentials.email,
+              password: credentials.password,
+            }
+            return await prisma.user.create({ data: newUser })
+          }
+          throw new Error('Login failed. Please make sure you insert the correct email and password.')        }
+      }
     }),
   ],
 
@@ -127,4 +106,4 @@ export default NextAuth({
     verifyRequest: '/auth/verify-request', // (used for check email message)
     newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
   },
-});
+})};

@@ -60,7 +60,6 @@ export const Navbar = () => {
           </button>
           </>
         }
-
       </section>
     </nav>
   )
