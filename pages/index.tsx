@@ -5,15 +5,17 @@ import { gsap } from "gsap";
 import furniture from "../public/api/furniture.json"
 import { PrismaClient } from '@prisma/client'
 
-// const Home: NextPage = (users) => {
-const Home: NextPage = ( users ) => {
+const Home: NextPage = (props) => {
   const [showGif, setShowGif] = useState<boolean>(true);
   
   const bcgRef = useRef();
   const bcgDarkRef = useRef();
   const textRef = useRef();
   
-console.log(users)
+//@ts-ignore
+console.log(props.products)
+    //@ts-ignore
+console.log(props.users)
   
   useEffect(() => {
 
@@ -68,8 +70,10 @@ export default Home
 export async function getStaticProps() {
   const prisma = new PrismaClient()
   const users = await prisma.user.findMany()
+    //@ts-ignore
+  const products = await prisma.products.findMany()
 
   return {
-    props : { users }
+    props : { users, products }
   }
 }

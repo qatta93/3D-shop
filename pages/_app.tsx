@@ -7,6 +7,7 @@ import { SessionProvider } from "next-auth/react"
 import { Provider } from "../context/AppContext";
 
 function MyApp({  Component, pageProps: { session, ...pageProps }}: AppProps) {
+
   useEffect(() => {
     const threeScript = document.createElement("script")
     threeScript.setAttribute("id", "threeScript");

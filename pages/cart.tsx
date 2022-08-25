@@ -7,7 +7,8 @@ import { generateUUID } from 'three/src/math/MathUtils'
 import { Context } from "../context/AppContext";
 import furniture from "../public/api/furnitureDetails.json"
 
-const Cart: NextPage = () => {
+const Cart: NextPage = (users) => {
+  console.log(users)
 
   //@ts-ignore
   const { state } = useContext(Context);
