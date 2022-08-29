@@ -12,4 +12,13 @@ export default async(req: NextApiRequest, res: NextApiResponse) => {
       res.status(400).json({ message: 'Something went wrong' });
     }
   }
+  if (req.method === 'POST') {
+    try {
+      const product = JSON.parse(req.body);
+      const savedProduct = await prisma.products.create({ data: product });
+      res.status(200).json(savedProduct);
+    } catch (err) {
+      res.status(400).json({ message: 'Something went wrong' });
+    }
+  }
 }

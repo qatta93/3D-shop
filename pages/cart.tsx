@@ -6,14 +6,26 @@ import { ShoppingCartItem } from '../src/components/ShoppingCartItem'
 import { generateUUID } from 'three/src/math/MathUtils'
 import { Context } from "../context/AppContext";
 import furniture from "../public/api/furnitureDetails.json"
+import { getProducts, getUsers } from '@/components/helpers/crud'
+import { useSession } from 'next-auth/react';
 
-const Cart: NextPage = (users) => {
-  console.log(users)
+
+const Cart: NextPage = () => {
+  const { data: session } = useSession();
 
   //@ts-ignore
   const { state } = useContext(Context);
+  const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([])
+  const [productsDatabase, setProductsDatabase] = useState([])
   const [price, setPrice] = useState(0)
+
+  const userId = session && users.length > 0 && users.filter(user => session.user.email === user.email)[0].id;
+  const getUserProducts = productsDatabase.filter(item => item.userId === userId)
+
+  const allProducts = products.concat(getUserProducts);
+  console.log(allProducts)
+
 
   const productsQuantityPrice = state.length > 0 && state.map(item => {
     const itemPrice = furniture.filter(product => product.id === item.products)[0].price.slice(0, -1);
@@ -23,6 +35,8 @@ const Cart: NextPage = (users) => {
   const totalPrice = productsQuantityPrice.length > 0 && productsQuantityPrice.reduce((a:number, b:number) => a + b, 0);
 
   useEffect(() => {
+    getProducts(setProductsDatabase)
+    getUsers(setUsers);
     setPrice(totalPrice)
     setProducts(state)
   }, [state])
@@ -49,6 +63,7 @@ const Cart: NextPage = (users) => {
             <div className="flex flex-col pt-6">
               {state.length === 0 && <p className="text-center mb-4 text-slate-400 text-xl text-amber-700 font-medium pb-6">Your shopping cart is empty!</p>}
               {products.length > 0 && products.map(product => <ShoppingCartItem key={generateUUID()} product={product}/>)}
+              {getUserProducts.length > 0 && getUserProducts.map(product => <ShoppingCartItem key={generateUUID()} product={product}/>)}
             </div>
             {state.length !== 0 &&
               <div className='pt-12 text-center mb-4 text-slate-400 text-xl'>

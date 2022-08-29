@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Lights from './Lights';
 import Model from './Model';
 import { Canvas } from '@react-three/fiber';
@@ -6,10 +6,13 @@ import ModelTop from './ModelTop';
 import Image from 'next/image'
 import { useSession } from 'next-auth/react';
 import { Context } from "../../context/AppContext";
+import { addProduct, getUsers } from './helpers/crud';
+import { v4 as uuidv4 } from 'uuid';
 
 export const ProductCard = ({item}) => {
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const [showModel, setShowModel] = useState<number>(1);
+  const [users, setUsers] = useState([]);
   //@ts-ignore
   const { state, dispatch } = useContext(Context);
   const { data: session } = useSession();
@@ -17,10 +20,20 @@ export const ProductCard = ({item}) => {
   const findProductInState = state.filter(product => product.products === item.id);
   const findInitialProductQuantity = findProductInState.map(item => item.quantity)
   
-  const addToCart = (event) => {
+  const addToCart = (event, item) => {
     event.stopPropagation(); 
     // if user signed in, add product to database
     if (session) {
+      const userId = session && users.length > 0 && users.filter(user => session.user.email === user.email)[0].id;
+
+      const product = {
+        id: uuidv4(),
+        products: item.id,
+        quantity: 1,
+        userId
+      }
+      console.log(product)
+      addProduct(product)
       return;
     }
     // if not, add product to local storage
@@ -38,6 +51,10 @@ export const ProductCard = ({item}) => {
       payloadQuantity: findInitialProductQuantity,
     })
   }
+
+  useEffect (() => {
+    getUsers(setUsers);
+  }, [])
 
   return (
     <div className="w-full mb-12 border-1 bg-white border-indigo-600 shadow-xl md:w-[600px] xl:w-[500px] xl:mx-12 md:rounded-xl cursor-pointer">
@@ -71,7 +88,7 @@ export const ProductCard = ({item}) => {
         <div className='flex'>
           <h3 className="text-xl text-gray-700 flex-1 font-semibold uppercase mt-2">{item.name}</h3>
           <p className="text-xl text-gray-900 mr-12 mt-2">{item.price}</p>
-          <Image src="/images/cart.png" alt="cart"  height={40} width={50} className='cursor-pointer' title='add to cart' onClick={() => addToCart(event)}/>
+          <Image src="/images/cart.png" alt="cart"  height={40} width={50} className='cursor-pointer' title='add to cart' onClick={() => addToCart(event, item)}/>
         </div>
         {showDetails &&
           <section className='pt-4'>
