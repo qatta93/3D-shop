@@ -4,6 +4,7 @@
 ## Table of Contents
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
+* [Features](#features)
 * [Screenshots](#screenshots)
 * [Setup](#setup)
 * [Project Status](#project-status)
@@ -33,6 +34,14 @@ This full stack app was created in order to make online shopping more user frien
 - Vercel
 - GitHub actions for CI/CD pipeline
 
+## Features
+So far, I have incorporated the following features:
+
+- user can display 3D models from different perspectives
+- user can open life preview of 3D models and zoom in to see details
+- user can add/subtract products to/from a cart when is not logged-in
+- total price of a cart is shown
+
 ## Screenshots
 https://user-images.githubusercontent.com/57223600/179953149-ebf115e9-140d-4945-b6e9-ea5d426ff24c.mp4
 
@@ -54,6 +63,5 @@ The project is currently on progress, and some additional features will be inclu
 
 ## Future features
 - user authentication
-- shopping cart
 - payments
 - 3D custom configurator based on parameters
