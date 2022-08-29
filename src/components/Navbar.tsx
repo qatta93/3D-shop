@@ -8,15 +8,52 @@ import { Context } from "../../context/AppContext";
 
 export const Navbar = () => {
   const { data: session } = useSession();
+
   //@ts-ignore
   const { state } = useContext(Context);
 
+  const [users, setUsers] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  async function getUsers() {
+    const response = await fetch('/api/users', {
+      method: 'GET',
+    });
+  
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    const getUsers = await response.json();
+    return setUsers(getUsers)
+  }
+  async function getProducts() {
+    const response = await fetch('/api/products', {
+      method: 'GET',
+    });
+  
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    const getProducts = await response.json();
+    return setProducts(getProducts)
+  }
+
+  const userId = session && users.length > 0 && users.filter(user => session.user.email === user.email)[0].id;
+
+  const userProductsLength = products.filter(item => item.userId === userId).length;
+
+  console.log(users)
+  
   const initialProductsAmount = state.length > 0 && state.map(item => item.quantity).reduce((a, b) => a + b, 0)
-
+  
   const [ productsAmount, setProductsAmount ] = useState<number>(0)
-
+  
   useEffect(() => {
-    setProductsAmount(initialProductsAmount)
+    if(initialProductsAmount > 0){
+      setProductsAmount(initialProductsAmount)
+    }
+    getUsers();
+    getProducts();
   }, [state]);
   
   return (
@@ -46,8 +83,9 @@ export const Navbar = () => {
               <p className='text-xl mr-4 hidden sm:block'>LOGOUT</p>
             </button>
             <ShoppingCartIcon className="h-8 w-8 sm:mx-2"/>
-            {/* read products in cart from localstorage and database */}
             <p className='text-xl hidden sm:block'>SHOP</p>
+            {/* read products in cart from localstorage and database */}
+            {userProductsLength > 0 && <p className='text-xl ml-2'>({userProductsLength + productsAmount})</p>}
           </div>
         )}
       </section>
