@@ -32,9 +32,8 @@ export const ProductCard = ({item}) => {
         quantity: 1,
         userId
       }
-      console.log(product)
-      addProduct(product)
-      return;
+
+      return addProduct(product);
     }
     // if not, add product to local storage
     if(findProductInState.length === 0){

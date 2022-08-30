@@ -1,17 +1,35 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
 import furniture from "../../public/api/furnitureDetails.json"
 import { Context } from "../../context/AppContext";
+import { getProducts, deleteProductDatabase } from './helpers/crud';
+import { useSession } from 'next-auth/react';
 
 export const ShoppingCartItem = ({product}) => {
+  const { data: session } = useSession();
   const productDetails = furniture.filter(item => item.id === product.products);
 
   //@ts-ignore
   const { state, dispatch } = useContext(Context);
 
-  const findQuantity = state.filter(item => item.products === productDetails[0].id)[0].quantity;
+  const filterProducts = state.filter(item => item.products === productDetails[0].id)[0];
+  const findQuantity = filterProducts !== undefined && filterProducts.quantity;
+
+  const [productsDatabase, setProductsDatabase] = useState([])
+
+  const filterProductsDatabase = productsDatabase.filter(item => item.products === productDetails[0].id)[0];
+  const findQuantityDatabase = filterProductsDatabase !== undefined && filterProductsDatabase.quantity;
+
+  useEffect(() => {
+    getProducts(setProductsDatabase)
+  },[])
+
+  console.log(findQuantityDatabase)
   
   const deleteProduct = () => {
+    console.log(productDetails[0].id)
+    console.log(state)
+    deleteProductDatabase(productDetails[0].id)
     dispatch({
       type: "DELETE_PRODUCT_FROM_CART",
       payload: productDetails[0].id,
@@ -46,7 +64,8 @@ export const ShoppingCartItem = ({product}) => {
         <p className='font-light text-sm sm:text-md'>Quantity:</p>
         <div>
           <button className='rounded-lg shadow-xl shadow-slate-200 text-center border-solid border-[1px] border-indigo-50 text-slate-400 font-medium mt-2 mx-1 sm:mx-2 px-2 sm:px-3' onClick={() => subtractProduct()}>-</button>
-          {findQuantity}
+          {!session && findQuantity}
+          {session && findQuantityDatabase}
           <button className='rounded-lg shadow-xl shadow-slate-200 text-center border-solid border-[1px] border-indigo-50 text-slate-400 font-medium mt-2 mx-1 sm:mx-2 px-2 sm:px-3' onClick={() => addProduct()}>+</button>
         </div>
       </section>

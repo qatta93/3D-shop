@@ -21,4 +21,13 @@ export default async(req: NextApiRequest, res: NextApiResponse) => {
       res.status(400).json({ message: 'Something went wrong' });
     }
   }
+  if (req.method === 'DELETE') {
+    try {
+      const productId = JSON.parse(req.body);
+      const deleteProduct = await prisma.products.delete({ where: { id: productId } });
+      res.status(200).json(deleteProduct);
+    } catch (err) {
+      res.status(400).json({ message: 'Something went wrong' });
+    }
+  }
 }

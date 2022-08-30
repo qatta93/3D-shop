@@ -23,14 +23,20 @@ export const Navbar = () => {
   const initialProductsAmount = state.length > 0 && state.map(item => item.quantity).reduce((a, b) => a + b, 0)
   
   const [ productsAmount, setProductsAmount ] = useState<number>(0)
+
+  console.log(state)
   
   useEffect(() => {
     if(initialProductsAmount > 0){
       setProductsAmount(initialProductsAmount)
     }
+  }, [state]);
+  
+  
+  useEffect(() => {
     getUsers(setUsers);
     getProducts(setProducts);
-  }, [state]);
+}, [])
   
   return (
     <nav className='px-6 pt-4 text-zinc-600 border-b-[1px] border-zinc-600 bg-white'>
@@ -63,7 +69,7 @@ export const Navbar = () => {
                 <ShoppingCartIcon className="h-8 w-8 sm:mx-2"/>
                 <p className='text-xl hidden sm:block'>SHOP</p>
                 {/* read products in cart from localstorage and database */}
-                {userProductsLength > 0 && <p className='text-xl ml-2'>({userProductsLength + productsAmount})</p>}
+                {userProductsLength > 0 && <p className='text-xl ml-2'>({userProductsLength})</p>}
              </button>
             </Link>
           </div>
