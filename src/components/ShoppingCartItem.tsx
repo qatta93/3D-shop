@@ -17,19 +17,21 @@ export const ShoppingCartItem = ({product}) => {
 
   const [productsDatabase, setProductsDatabase] = useState([])
 
+  console.log(productsDatabase)
+
   const filterProductsDatabase = productsDatabase.filter(item => item.products === productDetails[0].id)[0];
   const findQuantityDatabase = filterProductsDatabase !== undefined && filterProductsDatabase.quantity;
 
   useEffect(() => {
     getProducts(setProductsDatabase)
   },[])
-
-  console.log(findQuantityDatabase)
   
   const deleteProduct = () => {
-    console.log(productDetails[0].id)
+    console.log(productDetails[0])
     console.log(state)
-    deleteProductDatabase(productDetails[0].id)
+    // usun [0], kiedy bedzie 1 pozycja id
+    const productToDelete = productsDatabase.filter(item => item.products === productDetails[0].id)[0].id
+    deleteProductDatabase(productToDelete)
     dispatch({
       type: "DELETE_PRODUCT_FROM_CART",
       payload: productDetails[0].id,

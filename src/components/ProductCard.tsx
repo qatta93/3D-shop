@@ -6,13 +6,15 @@ import ModelTop from './ModelTop';
 import Image from 'next/image'
 import { useSession } from 'next-auth/react';
 import { Context } from "../../context/AppContext";
-import { addProduct, getUsers } from './helpers/crud';
+import { addProduct, addQuantity, getProducts, getUsers } from './helpers/crud';
 import { v4 as uuidv4 } from 'uuid';
 
 export const ProductCard = ({item}) => {
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const [showModel, setShowModel] = useState<number>(1);
   const [users, setUsers] = useState([]);
+  const [productsDatabase, setProductsDatabase] = useState([]);
+  console.log(productsDatabase)
   //@ts-ignore
   const { state, dispatch } = useContext(Context);
   const { data: session } = useSession();
@@ -31,6 +33,12 @@ export const ProductCard = ({item}) => {
         products: item.id,
         quantity: 1,
         userId
+      }
+
+      if(productsDatabase.find(item => item.products === product.products)){
+        console.log('istnieje')
+        console.log(product)
+        return addQuantity()
       }
 
       return addProduct(product);
@@ -53,6 +61,7 @@ export const ProductCard = ({item}) => {
 
   useEffect (() => {
     getUsers(setUsers);
+    getProducts(setProductsDatabase)
   }, [])
 
   return (

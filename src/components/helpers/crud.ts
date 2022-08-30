@@ -22,10 +22,32 @@ export const getProducts = async (setProducts) => {
   return setProducts(getProducts)
 }
 
+
+
+
+
+
+
+
+
+
+
 export const addProduct = async (product) => {
   const response = await fetch('/api/products', {
     method: 'POST',
     body: JSON.stringify(product)
+  });
+
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  return await response.json();
+}
+
+export const addQuantity = async () => {
+  const response = await fetch('/api/products', {
+    method: 'UPDATE',
+    // body: JSON.stringify(product)
   });
   if (!response.ok) {
     throw new Error(response.statusText);
@@ -33,8 +55,17 @@ export const addProduct = async (product) => {
   return await response.json();
 }
 
+
+
+
+
+
+
+
+
+
+
 export const deleteProductDatabase = async (productId) => {
-  console.log(JSON.stringify(productId))
   const response = await fetch('/api/products', {
     method: 'DELETE',
     body: JSON.stringify(productId)
