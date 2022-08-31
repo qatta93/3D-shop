@@ -11,10 +11,40 @@ export const Navbar = () => {
 
   //@ts-ignore
   const { state } = useContext(Context);
-  
-  const initialProductsAmount = state.length > 0 && state.map(item => item.quantity).reduce((a, b) => a + b, 0)
+
+  const [users, setUsers] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  async function getUsers() {
+    const response = await fetch('/api/users', {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    const getUsers = await response.json();
+    return setUsers(getUsers)
+  }
+  async function getProducts() {
+    const response = await fetch('/api/products', {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    const getProducts = await response.json();
+    return setProducts(getProducts)
+  }
+
+  const userId = session && users.length > 0 && users.filter(user => session.user.email === user.email)[0].id;
+
+  const userProductsLength = products.filter(item => item.userId === userId).length;
   
   const [ productsAmount, setProductsAmount ] = useState<number>(0)
+
+  const initialProductsAmount = state.length > 0 && state.map(item => item.quantity).reduce((a, b) => a + b, 0)
 
   console.log(state)
   
@@ -23,6 +53,11 @@ export const Navbar = () => {
       setProductsAmount(initialProductsAmount)
     }
   }, [state]);
+
+  useEffect(() => {
+    getUsers();
+    getProducts();
+  })
   
   
   return (
@@ -56,7 +91,7 @@ export const Navbar = () => {
                 <ShoppingCartIcon className="h-8 w-8 sm:mx-2"/>
                 <p className='text-xl hidden sm:block'>SHOP</p>
                 {/* read products in cart from localstorage and database */}
-
+                {userProductsLength > 0 && <p className='text-xl ml-2'>({userProductsLength + productsAmount})</p>}
              </button>
             </Link>
           </div>
