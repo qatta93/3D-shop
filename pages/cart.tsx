@@ -7,6 +7,7 @@ import { generateUUID } from 'three/src/math/MathUtils'
 import { Context } from "../context/AppContext";
 import furniture from "../public/api/furnitureDetails.json"
 import { useSession } from 'next-auth/react';
+import { getProducts, getUsers } from '@/components/helpers/crud'
 
 
 const Cart: NextPage = () => {
@@ -15,10 +16,9 @@ const Cart: NextPage = () => {
   //@ts-ignore
   const { state } = useContext(Context);
   const [users, setUsers] = useState([]);
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);	  
   const [productsDatabase, setProductsDatabase] = useState([])
   const [price, setPrice] = useState(0)
-  const [priceUser, setPriceUser] = useState(0)
 
   const userId = session && users.length > 0 && users.filter(user => session.user.email === user.email)[0].id;
   const getUserProducts = productsDatabase.filter(item => item.userId === userId)
@@ -41,6 +41,11 @@ const Cart: NextPage = () => {
     setProducts(state)
     setPrice(totalPrice)
   }, [state])
+
+  useEffect(() => {
+    getProducts(setProductsDatabase)
+    getUsers(setUsers);
+  }, [])
 
 
   return (

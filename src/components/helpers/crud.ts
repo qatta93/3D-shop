@@ -20,4 +20,15 @@ export const getProducts = async (setProducts) => {
   }
   const getProducts = await response.json();
   return setProducts(getProducts)
-} 
+}
+
+export const addProduct = async (product) => {
+  const response = await fetch('/api/products', {
+    method: 'POST',
+    body: JSON.stringify(product)
+  });
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  return await response.json();
+}

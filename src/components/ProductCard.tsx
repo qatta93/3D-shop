@@ -6,6 +6,7 @@ import ModelTop from './ModelTop';
 import Image from 'next/image'
 import { useSession } from 'next-auth/react';
 import { Context } from "../../context/AppContext";
+import { addProduct, getUsers } from './helpers/crud';
 import { v4 as uuidv4 } from 'uuid';
 
 export const ProductCard = ({item}) => {
@@ -33,7 +34,8 @@ export const ProductCard = ({item}) => {
         quantity: 1,
         userId
       }
-
+      addProduct(product);
+      return;
     }
     // if not, add product to local storage
     if(findProductInState.length === 0){
@@ -51,6 +53,9 @@ export const ProductCard = ({item}) => {
     })
   }
 
+  useEffect (() => {
+    getUsers(setUsers);
+  }, [])
 
   return (
     <div className="w-full mb-12 border-1 bg-white border-indigo-600 shadow-xl md:w-[600px] xl:w-[500px] xl:mx-12 md:rounded-xl cursor-pointer">
@@ -84,8 +89,7 @@ export const ProductCard = ({item}) => {
         <div className='flex'>
           <h3 className="text-xl text-gray-700 flex-1 font-semibold uppercase mt-2">{item.name}</h3>
           <p className="text-xl text-gray-900 mr-12 mt-2">{item.price}</p>
-          <Image src="/images/cart.png" alt="cart"  height={40} width={50} className='cursor-pointer' title='add to cart' onClick={() => addToCart(event, item)}/>
-        </div>
+          <Image src="/images/cart.png" alt="cart"  height={40} width={50} className='cursor-pointer' title='add to cart' onClick={() => addToCart(event, item)}/>        </div>
         {showDetails &&
           <section className='pt-4'>
             <div className='flex justify-between'>
