@@ -20,5 +20,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/auth/signin.js", "context/AppContext.js"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "products.ts"]
 }
