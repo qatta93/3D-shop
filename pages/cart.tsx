@@ -40,12 +40,12 @@ const Cart: NextPage = () => {
 
   useEffect(() => {
     setProducts(state)
+    setPrice(totalPrice)
   }, [state])
 
   useEffect(() => {
     getProducts(setProductsDatabase)
     getUsers(setUsers);
-    setPrice(totalPrice)
     setPriceUser(totalUserPrice)
   }, [])
 
