@@ -5,20 +5,12 @@ import Link from 'next/link'
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { Context } from "../../context/AppContext";
-import { getProducts, getUsers } from './helpers/crud';
 
 export const Navbar = () => {
   const { data: session } = useSession();
 
   //@ts-ignore
   const { state } = useContext(Context);
-
-  const [users, setUsers] = useState([]);
-  const [products, setProducts] = useState([]);
-
-  const userId = session && users.length > 0 && users.filter(user => session.user.email === user.email)[0].id;
-
-  const userProductsLength = products.filter(item => item.userId === userId).length;
   
   const initialProductsAmount = state.length > 0 && state.map(item => item.quantity).reduce((a, b) => a + b, 0)
   
@@ -32,11 +24,6 @@ export const Navbar = () => {
     }
   }, [state]);
   
-  
-  useEffect(() => {
-    getUsers(setUsers);
-    getProducts(setProducts);
-}, [])
   
   return (
     <nav className='px-6 pt-4 text-zinc-600 border-b-[1px] border-zinc-600 bg-white'>
@@ -69,7 +56,7 @@ export const Navbar = () => {
                 <ShoppingCartIcon className="h-8 w-8 sm:mx-2"/>
                 <p className='text-xl hidden sm:block'>SHOP</p>
                 {/* read products in cart from localstorage and database */}
-                {userProductsLength > 0 && <p className='text-xl ml-2'>({userProductsLength})</p>}
+
              </button>
             </Link>
           </div>

@@ -6,7 +6,6 @@ import ModelTop from './ModelTop';
 import Image from 'next/image'
 import { useSession } from 'next-auth/react';
 import { Context } from "../../context/AppContext";
-import { addProduct, getProducts, getUsers } from './helpers/crud';
 import { v4 as uuidv4 } from 'uuid';
 
 export const ProductCard = ({item}) => {
@@ -35,13 +34,6 @@ export const ProductCard = ({item}) => {
         userId
       }
 
-      if(productsDatabase.find(item => item.products === product.products)){
-        // console.log('istnieje')
-        // console.log(product)
-        // addQuantity()
-        return 
-      }
-      return addProduct(product);
     }
     // if not, add product to local storage
     if(findProductInState.length === 0){
@@ -59,10 +51,6 @@ export const ProductCard = ({item}) => {
     })
   }
 
-  useEffect (() => {
-    getUsers(setUsers);
-    getProducts(setProductsDatabase)
-  }, [])
 
   return (
     <div className="w-full mb-12 border-1 bg-white border-indigo-600 shadow-xl md:w-[600px] xl:w-[500px] xl:mx-12 md:rounded-xl cursor-pointer">
