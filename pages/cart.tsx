@@ -6,7 +6,6 @@ import { ShoppingCartItem } from '../src/components/ShoppingCartItem'
 import { generateUUID } from 'three/src/math/MathUtils'
 import { Context } from "../context/AppContext";
 import furniture from "../public/api/furnitureDetails.json"
-import { getProducts, getUsers } from '@/components/helpers/crud'
 import { useSession } from 'next-auth/react';
 
 
@@ -43,11 +42,6 @@ const Cart: NextPage = () => {
     setPrice(totalPrice)
   }, [state])
 
-  useEffect(() => {
-    getProducts(setProductsDatabase)
-    getUsers(setUsers);
-    setPriceUser(totalUserPrice)
-  }, [])
 
   return (
     <main>
