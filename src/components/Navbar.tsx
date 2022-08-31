@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { Context } from "../../context/AppContext";
+import { getProducts, getUsers } from './helpers/crud';
 
 export const Navbar = () => {
   const { data: session } = useSession();
@@ -14,29 +15,6 @@ export const Navbar = () => {
 
   const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
-
-  async function getUsers() {
-    const response = await fetch('/api/users', {
-      method: 'GET',
-    });
-
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    const getUsers = await response.json();
-    return setUsers(getUsers)
-  }
-  async function getProducts() {
-    const response = await fetch('/api/products', {
-      method: 'GET',
-    });
-
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    const getProducts = await response.json();
-    return setProducts(getProducts)
-  }
 
   const userId = session && users.length > 0 && users.filter(user => session.user.email === user.email)[0].id;
 
@@ -55,9 +33,9 @@ export const Navbar = () => {
   }, [state]);
 
   useEffect(() => {
-    getUsers();
-    getProducts();
-  })
+    getUsers(setUsers);
+    getProducts(setProducts);
+  }, [])
   
   
   return (
