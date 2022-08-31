@@ -27,3 +27,15 @@ export function product(state, action) {
       return state;
   }
 }
+
+// export function product(state, action) {
+//   switch (action.type) {
+//     case "SHOW_USER":
+//       return [
+//         ...state,
+//         {products: action.payload, quantity: action.payloadQuantity }
+//       ];
+//     default:
+//       return state;
+//   }
+// }

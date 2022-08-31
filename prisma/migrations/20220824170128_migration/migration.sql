@@ -39,6 +39,16 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
+CREATE TABLE "Products" (
+    "id" TEXT NOT NULL,
+    "products" TEXT NOT NULL,
+    "quantity" INTEGER NOT NULL,
+    "userId" TEXT NOT NULL,
+
+    CONSTRAINT "Products_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "VerificationToken" (
     "identifier" TEXT NOT NULL,
     "token" TEXT NOT NULL,
@@ -65,3 +75,6 @@ ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId"
 
 -- AddForeignKey
 ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Products" ADD CONSTRAINT "Products_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
