@@ -27,11 +27,11 @@ export const ShoppingCartItem = ({product}) => {
   },[])
   
   const deleteProduct = () => {
-    console.log(productDetails[0])
-    console.log(state)
-    // usun [0], kiedy bedzie 1 pozycja id
-    const productToDelete = productsDatabase.filter(item => item.products === productDetails[0].id)[0].id
-    deleteProductDatabase(productToDelete)
+    if(session){
+      const productToDelete = productsDatabase.filter(item => item.products === productDetails[0].id)[0].id
+      deleteProductDatabase(productToDelete)
+      return;
+    }
     dispatch({
       type: "DELETE_PRODUCT_FROM_CART",
       payload: productDetails[0].id,
@@ -39,6 +39,11 @@ export const ShoppingCartItem = ({product}) => {
   }
 
   const addProduct = () => {
+    if(session){
+      // const productToUpdate = productsDatabase.filter(item => item.products === productDetails[0].id)[0].id
+      // addQuantity(productToUpdate)
+      return;
+    }
     dispatch({
       type: "ADD_PRODUCT_QUANTITY",
       payload: productDetails[0].id,

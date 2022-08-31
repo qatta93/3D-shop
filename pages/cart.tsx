@@ -19,13 +19,10 @@ const Cart: NextPage = () => {
   const [products, setProducts] = useState([])
   const [productsDatabase, setProductsDatabase] = useState([])
   const [price, setPrice] = useState(0)
+  const [priceUser, setPriceUser] = useState(0)
 
   const userId = session && users.length > 0 && users.filter(user => session.user.email === user.email)[0].id;
   const getUserProducts = productsDatabase.filter(item => item.userId === userId)
-
-  const allProducts = products.concat(getUserProducts);
-  // console.log(allProducts)
-
 
   const productsQuantityPrice = state.length > 0 && state.map(item => {
     const itemPrice = furniture.filter(product => product.id === item.products)[0].price.slice(0, -1);
@@ -34,12 +31,23 @@ const Cart: NextPage = () => {
 
   const totalPrice = productsQuantityPrice.length > 0 && productsQuantityPrice.reduce((a:number, b:number) => a + b, 0);
 
+  const userProductsQuantityPrice = getUserProducts.length > 0 && getUserProducts.map(item => {
+      const itemPrice = furniture.filter(product => product.id === item.products)[0].price.slice(0, -1);
+      return Number(itemPrice) * item.quantity;
+  });
+
+  const totalUserPrice = userProductsQuantityPrice.length > 0 && userProductsQuantityPrice.reduce((a:number, b:number) => a + b, 0);
+
+  useEffect(() => {
+    setProducts(state)
+  }, [state])
+
   useEffect(() => {
     getProducts(setProductsDatabase)
     getUsers(setUsers);
     setPrice(totalPrice)
-    setProducts(state)
-  }, [state])
+    setPriceUser(totalUserPrice)
+  }, [])
 
   return (
     <main>
@@ -68,7 +76,7 @@ const Cart: NextPage = () => {
             {state.length !== 0 &&
               <div className='pt-12 text-center mb-4 text-slate-400 text-xl'>
                 <h1 className='font-bold pb-6'>TOTAL:</h1>
-                <p className='shadow-inner mx-auto text-teal-400 font-bold w-32 p-3 text-center border-solid border-[1px] border-indigo-50 '>{price} $</p>
+                <p className='shadow-inner mx-auto text-teal-400 font-bold w-32 p-3 text-center border-solid border-[1px] border-indigo-50 '>{session? totalUserPrice : price }$</p>
                 <button className='text-white bg-teal-400 my-8 py-2 px-4 rounded-xl font-medium'>GO TO PAYMENT</button>
               </div>
             }
