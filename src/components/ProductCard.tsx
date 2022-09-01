@@ -6,7 +6,7 @@ import ModelTop from './ModelTop';
 import Image from 'next/image'
 import { useSession } from 'next-auth/react';
 import { Context } from "../../context/AppContext";
-import { addProduct, getUsers } from './helpers/crud';
+import { addProduct, getUsers, addQuantity, getProducts } from './helpers/crud';
 import { v4 as uuidv4 } from 'uuid';
 
 export const ProductCard = ({item}) => {
@@ -34,6 +34,11 @@ export const ProductCard = ({item}) => {
         quantity: 1,
         userId
       }
+
+      if(productsDatabase.find(item => item.products === product.products)){
+        return addQuantity()
+      }
+
       addProduct(product);
       return;
     }
@@ -55,6 +60,7 @@ export const ProductCard = ({item}) => {
 
   useEffect (() => {
     getUsers(setUsers);
+    getProducts(setProductsDatabase);
   }, [])
 
   return (

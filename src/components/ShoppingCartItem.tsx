@@ -29,7 +29,8 @@ export const ShoppingCartItem = ({product}) => {
   
   const deleteProduct = () => {
     if(session){
-      return deleteProductDatabase(productDetails[0].id);
+      const productToDelete = productsDatabase.filter(item => item.products === productDetails[0].id)[0].id
+      return deleteProductDatabase(productToDelete)
     }
     dispatch({
       type: "DELETE_PRODUCT_FROM_CART",

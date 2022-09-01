@@ -23,6 +23,17 @@ export default async(req: NextApiRequest, res: NextApiResponse) => {
       res.status(400).json({ message: 'Something went wrong' });
     }
   }
+  if (req.method === 'UPDATE') {
+    try {
+      // const product = JSON.parse(req.body);
+      // console.log(product)
+
+      const savedProduct = await prisma.products.update({ data: {quantity: 500}, where: { id: '2c347b2e-8eb4-4cd9-be9f-66887561a2e3' } });
+      res.status(200).json(savedProduct);
+    } catch (err) {
+      res.status(400).json({ message: 'Something went wrong' });
+    }
+  }
   if (req.method === 'DELETE') {
     try {
       const productId = JSON.parse(req.body);
