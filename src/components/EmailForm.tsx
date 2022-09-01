@@ -19,13 +19,6 @@ export const EmailForm = (csrfToken) => {
       setAuthState(old => ({ ...old, [e.target.id]: e.target.value }))
   }
 
-  // const simplifyError = (error) => {
-  //     const errorMap = {
-  //         "CredentialsSignin": "Invalid username or password"
-  //     }
-  //     return errorMap[error] ?? "Unknown error occurred"
-  // }
-
   const handleAuth = async () => {
       setPageState(old => ({...old, processing: true, error: ''}))
       signIn('credentials', {

@@ -23,8 +23,6 @@ export const Navbar = () => {
   const [ productsAmount, setProductsAmount ] = useState<number>(0)
 
   const initialProductsAmount = state.length > 0 && state.map(item => item.quantity).reduce((a, b) => a + b, 0)
-
-  console.log(state)
   
   useEffect(() => {
     if(initialProductsAmount > 0){

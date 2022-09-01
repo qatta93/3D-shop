@@ -2,9 +2,7 @@ import { useEffect, useReducer, createContext } from "react";
 import { product } from "./AppReducer";
 
 const getLocalStorageProducts = typeof window !== 'undefined' && window.localStorage.getItem("state");
-console.log('getlocalstorageproducts', getLocalStorageProducts)
 const initialProducts = getLocalStorageProducts === undefined || getLocalStorageProducts === null ? [] : JSON.parse(getLocalStorageProducts);
-console.log('initialproducts',initialProducts)
 
 // initial state
 const initialState = initialProducts;

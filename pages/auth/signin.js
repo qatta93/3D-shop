@@ -3,16 +3,9 @@ import { getProviders, signIn, getSession , getCsrfToken } from "next-auth/react
 import Image from 'next/image'
 import Link from 'next/link'
 
-
 const SignIn = ({ providers, csrfToken }) => {
-  console.log(providers)
 
   const externalProviders = Object.values(providers).filter(provider => provider.name !== "credentials" || provider.name !== "email");
-
-  // const fetchData = async () => {
-  //   const allUsers = await prisma.user.findMany()
-  //   console.log(allUsers)
-  // }
 
   return (
     <>
@@ -50,13 +43,6 @@ const SignIn = ({ providers, csrfToken }) => {
 }
 
 export default SignIn;
-
-// export async function getServerSideProps(context) {
-//   const providers = await getProviders()
-//   return {
-//     props: { providers },
-//   }
-// }
 
 export async function getServerSideProps(context) {
   const { req } = context;

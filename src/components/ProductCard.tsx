@@ -14,7 +14,7 @@ export const ProductCard = ({item}) => {
   const [showModel, setShowModel] = useState<number>(1);
   const [users, setUsers] = useState([]);
   const [productsDatabase, setProductsDatabase] = useState([]);
-  console.log(productsDatabase)
+
   //@ts-ignore
   const { state, dispatch } = useContext(Context);
   const { data: session } = useSession();

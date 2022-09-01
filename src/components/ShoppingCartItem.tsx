@@ -23,9 +23,6 @@ export const ShoppingCartItem = ({product}) => {
   useEffect(() => {
     getProducts(setProductsDatabase)
   },[])
-
-  console.log(findQuantityDatabase)
-
   
   const deleteProduct = () => {
     if(session){
