@@ -33,6 +33,7 @@ This full stack app was created in order to make online shopping more user frien
 ### Deployment and hosting
 - Vercel
 - GitHub actions for CI/CD pipeline
+- Heroku Postgres Add-ons
 
 ## Features
 So far, I have incorporated the following features:
@@ -40,7 +41,17 @@ So far, I have incorporated the following features:
 - user can display 3D models from different perspectives
 - user can open life preview of 3D models and zoom in to see details
 - user can add/subtract products to/from a cart when is not logged-in
+- user authentication (login with email / google / github) - next-auth
+- user can create a new account
+- when user is logged-in, can add/delete products to an account
 - total price of a cart is shown
+
+## Bugs
+I am still working on the bugs:
+
+- the main GreenSock animation is displaying incorrectly from time to time
+- update products in database
+- rerender components after changes in database
 
 ## Screenshots
 https://user-images.githubusercontent.com/57223600/179953149-ebf115e9-140d-4945-b6e9-ea5d426ff24c.mp4
@@ -62,6 +73,5 @@ In order to run a local copy, users need to include an .env file in the server f
 The project is currently on progress, and some additional features will be included in the future.
 
 ## Future features
-- user authentication
 - payments
 - 3D custom configurator based on parameters
