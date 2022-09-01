@@ -33,16 +33,16 @@ export const addProduct = async (product) => {
   return await response.json();
 }
 
-export const addQuantity = async () => {
-  const response = await fetch('/api/products', {
-    method: 'UPDATE',
-    // body: JSON.stringify(product)
-  });
-  if (!response.ok) {
-    throw new Error(response.statusText);
-  }
-  return await response.json();
-}
+// export const addQuantity = async (productId) => {
+//   const response = await fetch('/api/products', {
+//     method: 'UPDATE',
+//     body: JSON.stringify(productId)
+//   });
+//   if (!response.ok) {
+//     throw new Error(response.statusText);
+//   }
+//   return await response.json();
+// }
 
 export const deleteProductDatabase = async (productId) => {
   console.log(JSON.stringify(productId))
