@@ -3,6 +3,7 @@ import Image from 'next/image'
 import furniture from "../../public/api/furnitureDetails.json"
 import { Context } from "../../context/AppContext";
 import { useSession } from 'next-auth/react';
+import { getProducts, deleteProductDatabase } from './helpers/crud';
 
 export const ShoppingCartItem = ({product}) => {
   const { data: session } = useSession();
@@ -16,13 +17,20 @@ export const ShoppingCartItem = ({product}) => {
 
   const [productsDatabase, setProductsDatabase] = useState([])
 
-  console.log(productsDatabase)
-
   const filterProductsDatabase = productsDatabase.filter(item => item.products === productDetails[0].id)[0];
   const findQuantityDatabase = filterProductsDatabase !== undefined && filterProductsDatabase.quantity;
 
+  useEffect(() => {
+    getProducts(setProductsDatabase)
+  },[])
+
+  console.log(findQuantityDatabase)
+
   
   const deleteProduct = () => {
+    if(session){
+      return deleteProductDatabase(productDetails[0].id);
+    }
     dispatch({
       type: "DELETE_PRODUCT_FROM_CART",
       payload: productDetails[0].id,

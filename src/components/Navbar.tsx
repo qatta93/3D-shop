@@ -69,7 +69,7 @@ export const Navbar = () => {
                 <ShoppingCartIcon className="h-8 w-8 sm:mx-2"/>
                 <p className='text-xl hidden sm:block'>SHOP</p>
                 {/* read products in cart from localstorage and database */}
-                {userProductsLength > 0 && <p className='text-xl ml-2'>({userProductsLength + productsAmount})</p>}
+                {userProductsLength > 0 && <p className='text-xl ml-2'>({userProductsLength})</p>}
              </button>
             </Link>
           </div>
