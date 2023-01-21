@@ -3,14 +3,14 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 
-export const EmailForm = (csrfToken) => {
+export const EmailForm = (csrfToken:any) => {
 
   const router =  useRouter()
-  const [authState, setAuthState] = useState({
+  const [authState, setAuthState] = useState<{email: string, password: string}>({
       email: '',
       password: ''
   })
-  const [pageState, setPageState] = useState({
+  const [pageState, setPageState] = useState<{error: string, processing: boolean}>({
       error: '',
       processing: false
   })

@@ -15,3 +15,23 @@ export interface FurnitureDetailsProps {
   embed: string,
   img: string
 }
+
+export interface User {
+  email: string,
+  emailVerifed?: boolean,
+  id: string,
+  image?: string,
+  password: string
+}
+
+export interface ProductInState {
+  products: string,
+  quantity: number,
+}
+
+export interface ProductInDatabase {
+  id: string,
+  products: string,
+  quantity: number,
+  userId: string,
+}
