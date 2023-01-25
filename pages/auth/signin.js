@@ -1,5 +1,6 @@
 import { EmailForm } from "@/components/EmailForm";
 import { getProviders, signIn, getSession , getCsrfToken } from "next-auth/react"
+import { Navigation } from '@/components/Navigation';
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -9,14 +10,7 @@ const SignIn = ({ providers, csrfToken }) => {
 
   return (
     <>
-    <section className='p-2'>
-      <Link href="/" >
-        <div className='flex'>
-          <Image src="/images/arrow.png" alt="arrow" height={8} width={25}  className='cursor-pointer'/>
-          <p className='cursor-pointer'>HOME</p>
-        </div>
-      </Link>
-    </section>
+    <Navigation/>
     <h1 className='bg-emerald-200 py-4 text-center text-zinc-600 font-semibold uppercase text-lg'>login</h1>
     <section className="w-screen pb-20">
       <div className="flex justify-center content-center my-12">
