@@ -16,8 +16,6 @@ export const Navbar = () => {
   const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
 
-  console.log(users)
-
   const userId = session && users.length > 0 && users.filter(user => session.user.email === user.email)[0].id;
 
   const userProductsLength = products.filter(item => item.userId === userId).length;

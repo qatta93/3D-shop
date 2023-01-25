@@ -36,9 +36,7 @@ export const ProductCard = ({item}) => {
       }
 
       if(productsDatabase.find(item => item.products === product.products)){
-        // console.log('istnieje')
-        // console.log(product)
-        // addQuantity()
+
         return 
       }
 

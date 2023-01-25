@@ -35,3 +35,20 @@ export interface ProductInDatabase {
   quantity: number,
   userId: string,
 }
+
+export interface group {
+  current: {
+    rotation: {
+      x: number;
+      y: number;
+    };
+  };
+}
+
+export interface actions {
+  current: {
+    idle: {
+      play: () => void;
+    };
+  };
+}

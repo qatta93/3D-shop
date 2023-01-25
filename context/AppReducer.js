@@ -1,3 +1,5 @@
+import { addProduct } from "@/components/helpers/crud";
+
 export function product(state, action) {
   switch (action.type) {
     case "ADD_PRODUCT_TO_CART":
@@ -28,14 +30,3 @@ export function product(state, action) {
   }
 }
 
-// export function product(state, action) {
-//   switch (action.type) {
-//     case "SHOW_USER":
-//       return [
-//         ...state,
-//         {products: action.payload, quantity: action.payloadQuantity }
-//       ];
-//     default:
-//       return state;
-//   }
-// }

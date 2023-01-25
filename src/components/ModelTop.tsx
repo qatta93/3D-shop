@@ -5,29 +5,12 @@ import { Html } from '@react-three/drei';
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Object3D } from "three/src/core/Object3D";
 import { AnimationClip } from "three/src/animation/AnimationClip";
+import {group, actions} from './types/index'
 
-interface group {
-  current: {
-    rotation: {
-      x: number;
-      y: number;
-    };
-  };
-}
-
-interface actions {
-  current: {
-    idle: {
-      play: () => void;
-    };
-  };
-}
 
 const Model = (item) => {
   const group:group = useRef();
   const actions:actions = useRef();
-
-  console.log(top)
 
   const [model, setModel] = useState<Object3D | null>(null);
   const [animation, setAnimation] = useState<AnimationClip[] | null>(null);

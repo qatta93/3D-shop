@@ -71,7 +71,7 @@ const Cart: NextPage = () => {
             <p className="text-center md:mb-4 text-slate-400 text-xl">Your shopping cart:</p>
             <p className="border-b-2 border-indigo-60 leading-[2px] text-center mb-6"></p>
             <div className="flex flex-col pt-6">
-              {state.length === 0 && <p className="text-center mb-4 text-slate-400 text-xl text-amber-700 font-medium pb-6">Your shopping cart is empty!</p>}
+              {state.length === 0 && <p className="text-center mb-4 text-xl text-amber-700 font-medium pb-6">Your shopping cart is empty!</p>}
               {!session && products.length > 0 && products.map((product:ProductInState) => <ShoppingCartItem key={generateUUID()} product={product}/>)}
               {session && getUserProducts.length > 0 && getUserProducts.map((product:ProductInDatabase) => <ShoppingCartItem key={generateUUID()} product={product}/>)}
             </div>
