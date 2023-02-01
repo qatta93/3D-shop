@@ -6,6 +6,7 @@
 * [Technologies Used](#technologies-used)
 * [Features](#features)
 * [Screenshots](#screenshots)
+* [Folders Structure](#folders-structure)
 * [Setup](#setup)
 * [Project Status](#project-status)
 * [Future features](#future-features)
@@ -56,6 +57,9 @@ I am still working on the bugs:
 ## Screenshots
 https://user-images.githubusercontent.com/57223600/179953149-ebf115e9-140d-4945-b6e9-ea5d426ff24c.mp4
 
+
+## Folders Structure
+<img src="./screenshots/folders.png" width="600">
 
 ## Setup
 If anybody wants to clone this project, they have to install dependencies using `npm install`, and then run the development local server using `npm run dev`. A list with all scrips is found in the package.json file.
