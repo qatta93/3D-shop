@@ -7,6 +7,7 @@
 * [Features](#features)
 * [Screenshots](#screenshots)
 * [Folders Structure](#folders-structure)
+* [Client Side Components Structure](#client-side-components-structure)
 * [Setup](#setup)
 * [Project Status](#project-status)
 * [Future features](#future-features)
@@ -60,6 +61,9 @@ https://user-images.githubusercontent.com/57223600/179953149-ebf115e9-140d-4945-
 
 ## Folders Structure
 <img src="./screenshots/folders.png" width="800">
+
+## Client Side Components Structure
+<img src="./screenshots/components.png" width="1000">
 
 ## Setup
 If anybody wants to clone this project, they have to install dependencies using `npm install`, and then run the development local server using `npm run dev`. A list with all scrips is found in the package.json file.
