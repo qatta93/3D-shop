@@ -59,7 +59,7 @@ https://user-images.githubusercontent.com/57223600/179953149-ebf115e9-140d-4945-
 
 
 ## Folders Structure
-<img src=".images/screenshots/folders.png" width="500">
+<img src="./screenshots/folders.png" width="600">
 
 ## Setup
 If anybody wants to clone this project, they have to install dependencies using `npm install`, and then run the development local server using `npm run dev`. A list with all scrips is found in the package.json file.
