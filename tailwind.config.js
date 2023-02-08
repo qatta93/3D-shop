@@ -20,11 +20,22 @@ module.exports = {
     extend: {
       fontFamily: {
           sans: ['"Roboto"', 'sans-serif'],
-         'adelia': ["ADELIA", "cursive"],
+         'changa-one': ["Changa One", "cursive"],
+         'cormorant': ["Cormorant", "serif"],
+         'michroma': ["Michroma", "sans-serif"]
+      },
+      colors: {
+        'primary-light': 'F1F2F8',
+        'primary-dark': 'DEE0EA',
+        'secondary-light': 'F6DE4C',
+        'secondary-medium': 'F6DE4C',
+        'secondary-dark': 'E0C623',
+        'grey-light': '#BBBBBB',
+        'grey-dark': '#4A4B4C'
       },
       screens: {
         'sm': '500px',
-        // => @media (min-width: 640px) { ... } 
+        // => @media (min-width: 500px) { ... } 
     
         'md': '768px',
         // => @media (min-width: 768px) { ... }
