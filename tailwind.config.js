@@ -19,7 +19,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'poppins': ['Poppins', 'sans-serif'],
+          sans: ['"Roboto"', 'sans-serif'],
          'adelia': ["ADELIA", "cursive"],
       },
       screens: {
