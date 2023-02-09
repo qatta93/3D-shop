@@ -7,7 +7,7 @@ const Cart: NextPage = () => {
 
   return (
     <main>
-
+      <p>cart</p>
     </main>
   )
 }

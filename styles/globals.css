@@ -4,7 +4,8 @@
 @tailwind utilities;
 
 html {
-  @apply text-primary-dark;
+  @apply text-grey-dark;
+
 }
 
 body {
@@ -19,4 +20,20 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+h1 {
+  @apply text-[55px];
+}
+h2 {
+  @apply text-[42px];
+}
+h3 {
+  @apply text-[39px];
+}
+h4 {
+  @apply text-[32px];
+}
+h5 {
+  @apply text-[24px];
 }

@@ -25,13 +25,13 @@ module.exports = {
          'michroma': ["Michroma", "sans-serif"]
       },
       colors: {
-        'primary-light': 'F1F2F8',
-        'primary-dark': 'DEE0EA',
-        'secondary-light': 'F6DE4C',
-        'secondary-medium': 'F6DE4C',
-        'secondary-dark': 'E0C623',
+        'primary-light': '#F1F2F8',
+        'primary-dark': '#DEE0EA',
+        'secondary-light': '#F6DE4C',
+        'secondary-medium': '#F6DE4C',
+        'secondary-dark': '#E0C623',
         'grey-light': '#BBBBBB',
-        'grey-dark': '#4A4B4C'
+        'grey-dark': '#4A4B4C',
       },
       screens: {
         'sm': '500px',
