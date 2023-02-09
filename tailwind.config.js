@@ -34,7 +34,7 @@ module.exports = {
         'grey-dark': '#4A4B4C',
       },
       screens: {
-        'sm': '500px',
+        'sm': '600px',
         // => @media (min-width: 500px) { ... } 
     
         'md': '768px',
