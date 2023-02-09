@@ -1,3 +1,5 @@
+import { RedirectableProviderType } from "next-auth/providers";
+
 export interface FurnitureProps {
   id: number,
   name: string,
@@ -51,4 +53,15 @@ export interface actions {
       play: () => void;
     };
   };
+}
+
+export interface MobileNavProps {
+  openMenu: boolean,
+  setOpenMenu: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export interface DesktopNavProps {
+  session: any,
+  signIn: any,
+  signOut: any,
 }

@@ -1,7 +1,8 @@
 import React from 'react'
 import Image from 'next/image';
+import { MobileNavProps } from '../types';
 
-export const MobileNav = ({openMenu, setOpenMenu}) => {
+export const MobileNav = ({openMenu, setOpenMenu}:MobileNavProps) => {
   return (
     <div>
       {openMenu ? 

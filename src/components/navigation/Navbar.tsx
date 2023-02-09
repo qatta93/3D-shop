@@ -6,9 +6,11 @@ import { getProducts, getUsers } from '../helpers/crud';
 import { MobileNav } from './MobileNav';
 import { DesktopNav } from './DesktopNav';
 import useDeviceSize from '../helpers/useDeviceSize';
+import { MobileNavProps } from '../types';
 
-export const Navbar = ({openMenu, setOpenMenu}) => {
+export const Navbar = ({openMenu, setOpenMenu}:MobileNavProps) => {
   const [deviceWidth] = useDeviceSize();
+  const { data: session } = useSession();
 
   return (
     <nav className='h-[70px] sm:h-[100px] w-full flex justify-between bg-primary-light p-[20px] sm:p-[35px]'>
@@ -17,7 +19,7 @@ export const Navbar = ({openMenu, setOpenMenu}) => {
         <h5 className='font-michroma pl-2.5 leading-7 lg:text-[31px]'>SHOPILY</h5>
       </section>
       <section>
-        {deviceWidth > 600 ? <DesktopNav/> : <MobileNav openMenu={openMenu} setOpenMenu={setOpenMenu}/>}
+        {deviceWidth > 600 ? <DesktopNav session={session} signIn={signIn} signOut={signOut}/> : <MobileNav openMenu={openMenu} setOpenMenu={setOpenMenu}/>}
       </section>
     </nav>
   )
