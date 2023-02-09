@@ -11,9 +11,11 @@ export const Navbar = ({openMenu, setOpenMenu}:MobileNavProps) => {
   const { data: session } = useSession();
 
   return (
-    <nav className='h-[70px] sm:h-[100px] w-full flex justify-between bg-primary-light p-[20px] sm:p-[35px]'>
+    <nav className='h-[70px] sm:h-[100px] w-full flex justify-between bg-primary-light p-[20px] sm:py-[35px] sm:px-6 lg:px-[124px]'>
       <section className='flex'>
-        <Image src="/images/logo.png" alt="logo"  height={30} width={30}/>
+        <div className='relative h-[30px] w-[30px] lg:h-[37px] lg:w-[37px]'>
+          <Image src="/images/logo.png" alt="logo"  layout='fill' className="absolute"/>
+        </div>
         <h5 className='font-michroma pl-2.5 leading-7 lg:text-[31px]'>SHOPILY</h5>
       </section>
       <section>
