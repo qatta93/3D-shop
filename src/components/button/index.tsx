@@ -47,7 +47,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         type='button'
         onClick={props.onClick}
         className={cx(
-          'rounded-sm',
+          'rounded-lg',
           styles.variant(variant),
           styles.size(size),
           className
