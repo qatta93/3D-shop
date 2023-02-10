@@ -1,0 +1,12 @@
+.link-active {
+  font-weight: 600;
+  text-decoration: underline solid 2px theme('colors.secondary-medium');
+  font-size: 16px;
+  margin: 2px 16px 0;
+}
+
+@screen lg {
+  .link-active {
+    margin: 4px 27px 0;
+  }
+}

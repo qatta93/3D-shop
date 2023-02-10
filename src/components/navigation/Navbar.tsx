@@ -3,7 +3,7 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { MobileNav } from './MobileNav';
 import { DesktopNav } from './DesktopNav';
-import useDeviceSize from '../helpers/useDeviceSize';
+import useDeviceSize from '../hooks/useDeviceSize';
 import { MobileNavProps } from '../types';
 
 export const Navbar = ({openMenu, setOpenMenu}:MobileNavProps) => {
