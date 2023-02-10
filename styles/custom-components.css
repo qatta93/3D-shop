@@ -10,3 +10,19 @@
     margin: 4px 27px 0;
   }
 }
+
+.btn-lg {
+  @apply h-[80px] w-[230px] text-[24px] font-bold;
+}
+
+.btn-md {
+  @apply h-[70px] w-[190px] text-[20px] font-bold;
+}
+
+.btn-sm {
+  @apply h-[60px] w-[180px] text-[18px] font-bold;
+}
+
+.btn-xs {
+  @apply h-[50px] w-[350px] text-[18px] font-semibold;
+}
