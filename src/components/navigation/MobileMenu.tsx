@@ -12,7 +12,7 @@ export const MobileMenu = ({setOpenMenu}) => {
         <Link href={label === 'home'? '/' : `/${label}`}>
           <Button
             variant={'primary'}
-            className={'w-[270px] mx-auto my-[14px]'}
+            className={'w-[270px] mx-auto my-[14px] uppercase'}
             size={'xs'}
             onClick={() => setOpenMenu((current:boolean) => !current)}>
             {label}

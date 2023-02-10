@@ -14,7 +14,7 @@ const styles = {
     variant: ButtonProps['variant'],
   ) => {
     if (variant === 'primary') {
-      return 'text-grey-dark bg-secondary-medium hover:bg-secondary-hovered';
+      return 'text-grey-dark bg-secondary-medium hover:bg-secondary-dark';
     }
     // if (variant === 'secondary') {
     //   return 'text-grey-700 inner-border-2 inner-border-grey-700';
