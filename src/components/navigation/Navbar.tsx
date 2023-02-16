@@ -16,7 +16,7 @@ export const Navbar = ({openMenu, setOpenMenu}:MobileNavProps) => {
         <div className='relative h-[30px] w-[30px] lg:h-[37px] lg:w-[37px]'>
           <Image src="/images/logo.png" alt="logo"  layout='fill' className="absolute"/>
         </div>
-        <h5 className='font-michroma pl-2.5 leading-7 lg:text-[31px]'>SHOPILY</h5>
+        <title className='font-michroma pl-2.5 leading-7 text-[24px] lg:text-[31px]'>SHOPILY</title>
       </section>
       <section>
         {deviceWidth > 600 ? <DesktopNav session={session} signIn={signIn} signOut={signOut}/> : <MobileNav openMenu={openMenu} setOpenMenu={setOpenMenu}/>}

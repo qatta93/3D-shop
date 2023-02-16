@@ -7,10 +7,10 @@ import FurnitureTypes from '@/components/furnitureTypes';
 const Home: NextPage = () => {
 
   return (
-    <div className='h-full px-[20px] sm:px-[40px] overflow-scroll'>
+    <section className='h-full px-[20px] sm:px-[40px] overflow-scroll'>
       <section className='flex flex-col sm:flex-row items-center text-center sm:text-left pt-[60px]'>
         <div>
-          <h4 className='font-changa-one max-w-[300px] sm:text-[42px]'>Furniture for a better everyday life.</h4>
+          <h1 className='font-changa-one max-w-[300px] text-[55px] sm:text-[42px]'>Furniture for a better everyday life.</h1>
           <p className='pt-[31px] pb-[45px] max-w-[300px] text-base font-light'>Have a look on our 3D models and find your perfect match!</p>
           <Link href={'/products'}>
             <Button
@@ -29,10 +29,10 @@ const Home: NextPage = () => {
         </div>
       </section>
       <section className='w-full px-4 grid grid-cols-1 gap-12 mb-16 mt-14 bg-primary-bcg bg-no-repeat bg-cover'>
-        <h4 className='text-center mb-[12px]'>PRODUCTS</h4>
+        <h2 className='text-center text-[32px] mb-[12px]'>PRODUCTS</h2>
         <FurnitureTypes/>
       </section>
-    </div>
+    </section>
   )
 }
 
