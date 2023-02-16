@@ -3,7 +3,7 @@ import { PrismaClient, Prisma } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export default async(req: NextApiRequest, res: NextApiResponse) => {
+const users = async(req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
     try {
       const users = await prisma.user.findMany()
@@ -13,3 +13,5 @@ export default async(req: NextApiRequest, res: NextApiResponse) => {
     }
   }
 }
+
+export default users;

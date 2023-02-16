@@ -1,6 +1,6 @@
 import { RedirectableProviderType } from "next-auth/providers";
 
-export interface FurnitureProps {
+export interface FurnitureTypesProps {
   id: number,
   name: string,
   img: string,

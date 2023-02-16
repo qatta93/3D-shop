@@ -2,9 +2,7 @@ import Button from '@/components/button'
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import Image from 'next/image';
-import furniture from "../public/api/productsTypes.json"
-import { FurnitureProps } from '../src/components/types/index'
-
+import FurnitureTypes from '@/components/furnitureTypes';
 
 const Home: NextPage = () => {
 
@@ -29,6 +27,10 @@ const Home: NextPage = () => {
           </div>
           <Image src="/images/chair-main.png" alt="chair"  layout='fill' className="absolute"/>
         </div>
+      </section>
+      <section className='w-full px-4 grid grid-cols-1 gap-12 mb-16 mt-14 bg-primary-bcg bg-no-repeat bg-cover'>
+        <h4 className='text-center mb-[12px]'>PRODUCTS</h4>
+        <FurnitureTypes/>
       </section>
     </div>
   )

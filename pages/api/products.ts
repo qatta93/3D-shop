@@ -5,7 +5,7 @@ const prisma = new PrismaClient({
   rejectOnNotFound: true,
 });
 
-export default async(req: NextApiRequest, res: NextApiResponse) => {
+const products = async(req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
     try {
       const products = await prisma.products.findMany()
@@ -43,3 +43,5 @@ export default async(req: NextApiRequest, res: NextApiResponse) => {
     }
   }
 }
+
+export default products;

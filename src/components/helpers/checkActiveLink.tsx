@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react'
 
-export const checkActiveLink = (endpoint) => {
+export const CheckActiveLink = (endpoint) => {
   useEffect(() => {})
   const router = useRouter();
   const pathName = router.pathname;
@@ -13,4 +13,4 @@ export const checkActiveLink = (endpoint) => {
   return 'my-auto hover:font-semibold mx-[16px] lg:mx-[27px]'
 }
 
-export default checkActiveLink;
+export default CheckActiveLink;

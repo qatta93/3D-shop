@@ -33,6 +33,9 @@ module.exports = {
         'grey-light': '#BBBBBB',
         'grey-dark': '#4A4B4C',
       },
+      backgroundImage: {
+        'primary-bcg': "url('/images/bcg-primary.png')",
+      },
       screens: {
         'sm': '600px',
         // => @media (min-width: 500px) { ... } 

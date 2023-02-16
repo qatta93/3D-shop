@@ -7,10 +7,10 @@ export const Layout = ({ children }:React.PropsWithChildren<{}>) => {
   const [openMenu, setOpenMenu] = useState(false)
 
   return (
-    <div className='w-full h-full min-h-screen relative'>
+    <div className='w-full h-full min-h-screen'>
       <Navbar openMenu={openMenu} setOpenMenu={setOpenMenu}/>
       <main className='h-[calc(100vh-120px)] sm:h-[calc(100vh-150px)] bg-primary-light'>{openMenu ? <MobileMenu setOpenMenu={setOpenMenu}/> : children}</main>
-      <footer className='absolute bottom-0 w-full'>
+      <footer className='w-full'>
         <Footer />
       </footer>
     </div>

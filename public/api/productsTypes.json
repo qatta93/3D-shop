@@ -1,19 +1,19 @@
 [{
   "id": 1,
-  "name": "chairs",
-  "img": "/images/chair.jpg",
+  "name": "Chairs",
+  "img": "/images/types-chair.png",
   "price": "95$"
 },
 {
   "id": 2,
-  "name": "tables",
-  "img": "/images/table.jpg",
+  "name": "Tables",
+  "img": "/images/types-table.png",
   "price": "185$"
 },
 {
   "id": 3,
-  "name": "lamps",
-  "img": "/images/lamp.jpg",
+  "name": "Lamps",
+  "img": "/images/types-lamp.png",
   "price": "65$"
 }
 ]

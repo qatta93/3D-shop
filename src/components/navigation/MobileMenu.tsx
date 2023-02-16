@@ -9,7 +9,7 @@ export const MobileMenu = ({setOpenMenu}) => {
     <section className='flex items-center h-[calc(100%-3px)] w-full bg-white'>
       <div className='flex flex-col mx-auto'>
         {pages.map((label:string) => (
-        <Link href={label === 'home'? '/' : `/${label}`}>
+        <Link href={label === 'home'? '/' : `/${label}`} key={label}>
           <Button
             variant={'primary'}
             className={'w-[270px] mx-auto my-[14px] uppercase'}
